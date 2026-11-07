@@ -1,64 +1,66 @@
 # Corne MX Pro – QMK/Vial External Userspace
 
-Ziel: **Keebart Corne MX Pro Standard, RP2040, 46 physische Tasten, keine Displays**.
-Die Belegung basiert auf `corne_choc_pro.keymap` der bestehenden
-ZMK-Konfiguration. Acht Layer: `macos`, `num`, `sym`, `nav`, `win`, `short`,
-`numpad`, `sys`. Die vier zusätzlichen inneren MX-Tasten sind aktuell noch
-unbelegt: An diesen Positionen enthält die Choc-Vorlage wegen ihrer Displays
-`&none`. Ihre neue Belegung muss noch festgelegt werden.
-
-Das Repository enthält keine QMK-Hardwaredefinitionen und keinen Firmware-Fork.
-Der Build bezieht Keebarts Branch `vial`, festgesetzt auf Commit
-`63e2d6248209f1926e60daa5b950c771cf09d837`.
+Persönliche Firmware für die **Keebart Corne MX Pro Standard, RP2040, 46 Tasten,
+keine Displays**. Sie verwendet Keebarts normale QMK-/Vial-Verarbeitung.
+Die Belegung basiert ursprünglich auf der Corne-Choc-ZMK-Konfiguration und wird
+jetzt direkt in [keymap.c](keyboards/keebart/corne_mx_pro/keymaps/basch_de/keymap.c)
+gepflegt. Es gibt keinen Belegungsgenerator und keine Abhängigkeit vom ZMK-Repository.
 
 | Keymap | Zweck |
 |---|---|
-| `keebart_vial_stock` | Unveränderte Hersteller-Keymap als Referenz; vier vorbelegte, 16 dynamische Layer |
-| `basch_de` | Acht vorbelegte, 16 dynamische Layer, Vial-Tap/Hold-Einstellungen und normales `EE_CLR` auf SYS |
+| `basch_de` | Persönliche Belegung: acht vorbelegte von 16 dynamischen Layern |
+| `keebart_vial_stock` | Unveränderte Herstellerreferenz: vier vorbelegte von 16 Layern |
 
-GitHub Actions baut zuerst die Herstellerreferenz und anschließend die Migration.
-Nach einem Push oder über **Actions → Build Keebart Vial UF2 → Run workflow**
-entstehen getrennte UF2-Artefakte und Build-Metadaten. Es gibt keine Flash-Schritte.
-Workflow: [.github/workflows/build.yml](.github/workflows/build.yml).
+Layer: `macos`, `num`, `sym`, `nav`, `win`, `short`, `numpad`, `sys`.
+Vier innere Tasten sind aktuell noch unbelegt. Ihre Positionen sowie die Layer-
+Zugänge stehen in [docs/PROJECT.md](docs/PROJECT.md).
 
-**Tap/Hold:** Seit dem 8. November 2026 verwenden wir Vials gemeinsame Einstellungen:
-250 ms, Permissive Hold und Chordal Hold an, Hold On Other Key Press aus.
-Sie werden einmalig voreingestellt und können danach in Vial geändert werden.
-Normale Neustarts behalten die GUI-Werte. Die frühere eigene ZMK-Timing-Nachbildung
-und die Compiler-Symbolumbenennung wurden entfernt. Quick Tap startet nach
-Vials Standard mit 250 ms; Flow Tap mit 0.
+## Einstellungen
 
-**Standardaktionen:** Cmd+Space/Hyper, Caps Word/SHORT und Komma/Punkt sind als
-Vial Tap Dance `TD(0..2)` mit je 250 ms vorbelegt. Aktionen und Timings sind in
-Vial änderbar und bleiben bei normalen Neustarts erhalten. Tap Dance wartet bei
-Holds die Frist ab; frühe Unterbrechungen lösen Tap aus. Voice Command wurde durch
-QMK Assistant (`KC_ASST`), Consumer Power durch System Power (`KC_PWR`) ersetzt.
-Deren Wirkung auf dem Mac ist noch zu testen. Die eigene `vial.json` ist jetzt
-inhaltlich identisch zur Herstellerdefinition, ohne Custom-Keycode-Einträge.
+Die Firmware initialisiert einmalig diese in Vial änderbaren Voreinstellungen:
 
-**Caps Word:** Keebart-/Vial-Standard mit fünf Sekunden Inaktivitäts-Timeout,
-Großschreibung von Buchstaben und Minus zu Unterstrich; keine eigenen Overrides.
+- Tapping Term 250 ms, Permissive Hold und Chordal Hold an,
+  Hold On Other Key Press aus; Quick Tap startet mit 250 ms, Flow Tap mit 0.
+- `TD(0)`: Cmd+Space / Hyper.
+- `TD(1)`: Caps Word / SHORT.
+- `TD(2)`: Komma / Punkt.
 
-**Prüfstand:** Beide Keymaps wurden mit echten QMK-Keycodes und der Hersteller-
-Layoutmatrix auf dem Host syntaxgeprüft. 32 Ereignistests gegen den unveränderten
-Keebart-Tap/Hold- und Tap-Dance-Code sowie Vials originale Tap-Dance-Callbacks bestehen. Ein vollständiger RP2040-/UF2-Build und ein
-GitHub-Actions-Lauf wurden noch nicht durchgeführt. Zusätzliche lokale
-Buildwerkzeuge wurden in dieser Sitzung nicht zum Download freigegeben.
-Hardwaretests stehen aus. Es wurde nichts geflasht oder auf der Tastatur gelöscht.
+Die drei Tap Dances starten ebenfalls mit je 250 ms. Ihre Zeiten sind unabhängig
+vom globalen Tapping Term in Vial änderbar. Eine frühe Unterbrechung entscheidet
+Tap statt Hold. Normale Neustarts behalten spätere Vial-Änderungen.
 
-Die komplette Zuordnung aller 368 Positionen steht in [docs/bindings.json](docs/bindings.json).
-Entscheidungen, Vial-Besonderheiten, verbleibende Abweichungen und Hardwaretests:
-[docs/MIGRATION.md](docs/MIGRATION.md).
+Caps Word, RGB und `EE_CLR` verwenden die Hersteller-/Vial-Standardverarbeitung.
+`EE_CLR` liegt auf SYS und löst direkt beim Drücken aus. Assistant und Power
+verwenden die Standardcodes `KC_ASST` und `KC_PWR`; die Hostwirkung ist noch zu testen.
+Die eigene `vial.json` entspricht vollständig der Herstellerdefinition.
 
-Lokale Prüfungen mit einem vorhandenen Checkout des festgesetzten Keebart-Commits:
+## Build und Prüfungen
+
+Buildziel: `keebart/corne_mx_pro/standard`. Der
+[Workflow](.github/workflows/build.yml) bezieht `Keebart/vial-qmk-keebart`, Branch
+`vial`, festgesetzt auf Commit `63e2d6248209f1926e60daa5b950c771cf09d837`.
+Er verwendet External Userspace, einen festgesetzten QMK-Buildcontainer und
+rekursive Submodule. Hardwaredefinitionen und QMK-Core werden nicht verändert.
+
+Nach einem Push oder einem manuellen Workflowstart baut Actions zuerst die
+Herstellerreferenz und dann die persönliche Keymap. Beide UF2-Dateien und
+Build-Metadaten werden als getrennte Artefakte bereitgestellt. Es gibt keine
+Flash-Schritte.
+
+Mit einem vorhandenen Checkout des festgesetzten Keebart-Commits:
 
 ```sh
 python3 scripts/check_sources.py /path/to/vial-qmk-keebart
 python3 tests/run.py /path/to/vial-qmk-keebart
-python3 scripts/migrate_keymap.py /path/to/zmk-config/config/corne_choc_pro.keymap --check
 git diff --check
 ```
 
-Der Generator ohne `--check` schreibt `keymap.c` und `docs/bindings.json` neu.
-Er ist für diese konkrete Quelldatei gedacht und bricht bei unbekannten Behaviors,
-abweichender Layerreihenfolge oder Positionszahl ab.
+**Prüfstand:** Herstellerreferenz und Vial-Geometrie geprüft; beide Keymaps auf
+dem Host mit echten QMK-Keycodes und Herstellerlayout kompiliert. 32 Host-
+Ereignistests sowie Prüfungen der tatsächlichen Keymap-Matrix bestehen. Hardware,
+USB und persistenter Speicher werden dabei simuliert. Ein vollständiger
+RP2040-/UF2-Build, ein GitHub-Actions-Lauf und Hardwaretests stehen noch aus.
+Es wurde nichts geflasht und kein EEPROM-Reset auf der Tastatur ausgeführt.
+
+Technische Hinweise, Persistenz und offene Hardwaretests:
+[docs/PROJECT.md](docs/PROJECT.md).
