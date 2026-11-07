@@ -6,6 +6,31 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "../keyboards/keebart/corne_mx_pro/keymaps/basch_de/keymap.c"
+
+_Static_assert(sizeof(keymaps) / sizeof(keymaps[0]) == 8, "Expected eight default layers");
+_Static_assert(sizeof(encoder_map) / sizeof(encoder_map[0]) == 8, "Encoder layers must match");
+
+static void check_keymap(void) {
+    assert(MACOS == 0 && NUM == 1 && SYM == 2 && NAV == 3 && WIN == 4 &&
+           SHORT == 5 && NUMPAD == 6 && SYS == 7);
+    // Four physical inner keys are still unassigned. Update when assigning them.
+    for (unsigned layer = MACOS; layer <= SYS; ++layer) {
+        assert(keymaps[layer][0][6] == KC_NO && keymaps[layer][1][6] == KC_NO);
+        assert(keymaps[layer][4][6] == KC_NO && keymaps[layer][5][6] == KC_NO);
+    }
+    // Check the actual compiled matrix, including the mirrored right half.
+    for (unsigned row = 2; row <= 6; row += 4) {
+        assert(keymaps[SYS][row][0] == QK_RBT);
+        assert(keymaps[SYS][row][1] == QK_BOOT);
+        assert(keymaps[SYS][row][2] == EE_CLR);
+    }
+    assert(keymaps[MACOS][1][0] == TD(0));
+    assert(keymaps[MACOS][7][3] == TD(1));
+    assert(keymaps[NUMPAD][6][1] == TD(2));
+    assert(keymaps[SHORT][6][4] == KC_ASST);
+    assert(keymaps[SYS][4][0] == KC_PWR);
+}
 
 static uint16_t codes[MATRIX_ROWS][MATRIX_COLS];
 static uint16_t now, registered16, registered8, consumer, weak_mods;
@@ -128,6 +153,7 @@ static void hrm(bool pressed, uint16_t time) { event(LCTL_T(KC_A),1,1,time,press
 
 int main(int argc, char **argv) {
     assert(argc == 2);
+    check_keymap();
     const char *test = argv[1];
     via_init_kb();
     keyboard_post_init_user();

@@ -73,11 +73,11 @@ jobs:
           path: userspace/*keebart_vial_stock.uf2
           if-no-files-found: error
 
-      - name: Build migrated keymap
+      - name: Build personal keymap
         working-directory: firmware
         run: qmk compile -kb keebart/corne_mx_pro/standard -km basch_de
 
-      - name: Upload migrated UF2
+      - name: Upload personal UF2
         uses: actions/upload-artifact@v4
         with:
           name: corne-mx-pro-basch-de-vial

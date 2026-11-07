@@ -21,13 +21,4 @@ assert [x['matrix'] for x in layout[40:]] == [[3,3],[3,4],[3,5],[7,5],[7,4],[7,3
 original = json.loads((upstream / 'keymaps/vial/vial.json').read_text())
 custom = json.loads((local / 'basch_de/vial.json').read_text())
 assert custom == original
-manifest = json.loads((root / 'docs/bindings.json').read_text())
-assert [x['layer'] for x in manifest] == ['macos','num','sym','nav','win','short','numpad','sys']
-for layer in manifest:
-    assert len(layer['bindings']) == 46
-    for i in (6,7,20,21): assert layer['bindings'][i]['qmk'] == 'KC_NO'
-for i, code in ((28,'QK_RBT'),(29,'QK_BOOT'),(30,'EE_CLR'),(37,'EE_CLR'),(38,'QK_BOOT'),(39,'QK_RBT')):
-    assert manifest[7]['bindings'][i]['qmk'] == code
-for layer, position, code in ((0,14,'TD(0)'),(0,45,'TD(1)'),(6,38,'TD(2)'),(5,35,'KC_ASST'),(7,13,'KC_PWR')):
-    assert manifest[layer]['bindings'][position]['qmk'] == code
-print('Pinned target, stock byte identity, GP21, 46 positions, Vial geometry, and SYS mirroring verified.')
+print('Pinned target, stock byte identity, GP21, 46 positions, and Vial geometry verified.')

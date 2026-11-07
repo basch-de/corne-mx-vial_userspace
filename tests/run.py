@@ -75,4 +75,4 @@ with tempfile.TemporaryDirectory(prefix='corne-host-') as directory:
                  'td-hyper-hold','td-short-hold','td-comma-tap','td-interrupt','td-double','td-gui-edit']
     for scenario in scenarios:
         subprocess.run([str(tmp/'sequences'), scenario], check=True)
-    print(f'{len(scenarios)} host regression scenarios passed; both keymaps compile with real QMK keycodes/layout.')
+    print(f'{len(scenarios)} host regression scenarios and compiled keymap checks passed; both keymaps compile with real QMK keycodes/layout.')
