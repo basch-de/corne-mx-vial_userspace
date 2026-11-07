@@ -1,0 +1,93 @@
+name: Build Keebart Vial UF2
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vial-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    # Same immutable build image as the inspected Keebart vial CI.
+    container: ghcr.io/qmk/qmk_cli@sha256:2dc05fc9f32efebd6b05c2b8676ee548358bc7e151e9dbf4dac6b6eed4513b07
+    timeout-minutes: 30
+    env:
+      QMK_USERSPACE: ${{ github.workspace }}/userspace
+    steps:
+      - name: Checkout external userspace
+        uses: actions/checkout@v4
+        with:
+          path: userspace
+          persist-credentials: false
+
+      - name: Checkout pinned Keebart vial source
+        uses: actions/checkout@v4
+        with:
+          repository: Keebart/vial-qmk-keebart
+          # vial HEAD inspected on 2026-11-07; update deliberately after review.
+          ref: 63e2d6248209f1926e60daa5b950c771cf09d837
+          path: firmware
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Configure build environment
+        working-directory: firmware
+        run: |
+          python3 -m venv --system-site-packages /tmp/corne-qmk-venv
+          /tmp/corne-qmk-venv/bin/pip install -r requirements.txt
+          echo /tmp/corne-qmk-venv/bin >> "$GITHUB_PATH"
+          qmk config user.qmk_home="$GITHUB_WORKSPACE/firmware"
+
+      - name: Record build provenance
+        working-directory: firmware
+        run: |
+          mkdir -p "$QMK_USERSPACE/build-info"
+          git rev-parse HEAD > "$QMK_USERSPACE/build-info/firmware-commit.txt"
+          git submodule status --recursive > "$QMK_USERSPACE/build-info/submodules.txt"
+          git -C "$QMK_USERSPACE" rev-parse HEAD > "$QMK_USERSPACE/build-info/userspace-commit.txt"
+          arm-none-eabi-gcc --version > "$QMK_USERSPACE/build-info/compiler.txt"
+          pip freeze > "$QMK_USERSPACE/build-info/python-packages.txt"
+
+      - name: Validate userspace and host regression tests
+        working-directory: firmware
+        run: |
+          qmk userspace-doctor
+          python3 "$QMK_USERSPACE/scripts/check_sources.py" .
+          python3 "$QMK_USERSPACE/tests/run.py" .
+
+      - name: Build unmodified manufacturer Vial keymap first
+        working-directory: firmware
+        run: qmk compile -kb keebart/corne_mx_pro/standard -km keebart_vial_stock
+
+      - name: Upload manufacturer baseline UF2
+        uses: actions/upload-artifact@v4
+        with:
+          name: corne-mx-pro-keebart-vial-stock
+          path: userspace/*keebart_vial_stock.uf2
+          if-no-files-found: error
+
+      - name: Build migrated keymap
+        working-directory: firmware
+        run: qmk compile -kb keebart/corne_mx_pro/standard -km basch_de
+
+      - name: Upload migrated UF2
+        uses: actions/upload-artifact@v4
+        with:
+          name: corne-mx-pro-basch-de-vial
+          path: userspace/*basch_de.uf2
+          if-no-files-found: error
+
+      - name: Upload build provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-provenance
+          path: userspace/build-info/
+          if-no-files-found: warn

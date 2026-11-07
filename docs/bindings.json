@@ -1,0 +1,1882 @@
+[
+  {
+    "layer": "macos",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&hlt SYS GRAVE",
+        "qmk": "GRV_SYS"
+      },
+      {
+        "position": 1,
+        "zmk": "&kp Q",
+        "qmk": "KC_Q"
+      },
+      {
+        "position": 2,
+        "zmk": "&kp W",
+        "qmk": "KC_W"
+      },
+      {
+        "position": 3,
+        "zmk": "&kp E",
+        "qmk": "KC_E"
+      },
+      {
+        "position": 4,
+        "zmk": "&kp R",
+        "qmk": "KC_R"
+      },
+      {
+        "position": 5,
+        "zmk": "&kp T",
+        "qmk": "KC_T"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&kp Y",
+        "qmk": "KC_Y"
+      },
+      {
+        "position": 9,
+        "zmk": "&kp U",
+        "qmk": "KC_U"
+      },
+      {
+        "position": 10,
+        "zmk": "&kp I",
+        "qmk": "KC_I"
+      },
+      {
+        "position": 11,
+        "zmk": "&kp O",
+        "qmk": "KC_O"
+      },
+      {
+        "position": 12,
+        "zmk": "&kp P",
+        "qmk": "KC_P"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp BSLH",
+        "qmk": "KC_BSLS"
+      },
+      {
+        "position": 14,
+        "zmk": "&mt LA(LC(LG(LSHFT))) LG(SPACE)",
+        "qmk": "TD(0)"
+      },
+      {
+        "position": 15,
+        "zmk": "&hml LCTRL A",
+        "qmk": "LCTL_T(KC_A)"
+      },
+      {
+        "position": 16,
+        "zmk": "&hml LGUI S",
+        "qmk": "LGUI_T(KC_S)"
+      },
+      {
+        "position": 17,
+        "zmk": "&hml LALT D",
+        "qmk": "LALT_T(KC_D)"
+      },
+      {
+        "position": 18,
+        "zmk": "&hml LSHFT F",
+        "qmk": "LSFT_T(KC_F)"
+      },
+      {
+        "position": 19,
+        "zmk": "&kp G",
+        "qmk": "KC_G"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&kp H",
+        "qmk": "KC_H"
+      },
+      {
+        "position": 23,
+        "zmk": "&hmr RSHFT J",
+        "qmk": "RSFT_T(KC_J)"
+      },
+      {
+        "position": 24,
+        "zmk": "&hmr RALT K",
+        "qmk": "RALT_T(KC_K)"
+      },
+      {
+        "position": 25,
+        "zmk": "&hmr RGUI L",
+        "qmk": "RGUI_T(KC_L)"
+      },
+      {
+        "position": 26,
+        "zmk": "&hmr RCTRL SEMI",
+        "qmk": "RCTL_T(KC_SCLN)"
+      },
+      {
+        "position": 27,
+        "zmk": "&mt LA(LC(LSHFT)) SQT",
+        "qmk": "QUOT_CSA"
+      },
+      {
+        "position": 28,
+        "zmk": "&lt SHORT EQUAL",
+        "qmk": "EQ_SHORT"
+      },
+      {
+        "position": 29,
+        "zmk": "&kp Z",
+        "qmk": "KC_Z"
+      },
+      {
+        "position": 30,
+        "zmk": "&kp X",
+        "qmk": "KC_X"
+      },
+      {
+        "position": 31,
+        "zmk": "&kp C",
+        "qmk": "KC_C"
+      },
+      {
+        "position": 32,
+        "zmk": "&kp V",
+        "qmk": "KC_V"
+      },
+      {
+        "position": 33,
+        "zmk": "&kp B",
+        "qmk": "KC_B"
+      },
+      {
+        "position": 34,
+        "zmk": "&kp N",
+        "qmk": "KC_N"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp M",
+        "qmk": "KC_M"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp COMMA",
+        "qmk": "KC_COMM"
+      },
+      {
+        "position": 37,
+        "zmk": "&kp DOT",
+        "qmk": "KC_DOT"
+      },
+      {
+        "position": 38,
+        "zmk": "&kp FSLH",
+        "qmk": "KC_SLSH"
+      },
+      {
+        "position": 39,
+        "zmk": "&kp MINUS",
+        "qmk": "KC_MINS"
+      },
+      {
+        "position": 40,
+        "zmk": "&hlt NAV ESC",
+        "qmk": "ESC_NAV"
+      },
+      {
+        "position": 41,
+        "zmk": "&hlt NUM BSPC",
+        "qmk": "BSP_NUM"
+      },
+      {
+        "position": 42,
+        "zmk": "&rhlt WIN TAB",
+        "qmk": "TAB_WIN"
+      },
+      {
+        "position": 43,
+        "zmk": "&rlt NUMPAD RET",
+        "qmk": "ENT_PAD"
+      },
+      {
+        "position": 44,
+        "zmk": "&hlt SYM SPACE",
+        "qmk": "SPC_SYM"
+      },
+      {
+        "position": 45,
+        "zmk": "&lcw SHORT 0",
+        "qmk": "TD(1)"
+      }
+    ]
+  },
+  {
+    "layer": "num",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&kp COMMA",
+        "qmk": "KC_COMM"
+      },
+      {
+        "position": 1,
+        "zmk": "&kp N1",
+        "qmk": "KC_1"
+      },
+      {
+        "position": 2,
+        "zmk": "&kp N2",
+        "qmk": "KC_2"
+      },
+      {
+        "position": 3,
+        "zmk": "&kp N3",
+        "qmk": "KC_3"
+      },
+      {
+        "position": 4,
+        "zmk": "&kp N4",
+        "qmk": "KC_4"
+      },
+      {
+        "position": 5,
+        "zmk": "&kp N5",
+        "qmk": "KC_5"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&kp N6",
+        "qmk": "KC_6"
+      },
+      {
+        "position": 9,
+        "zmk": "&kp N7",
+        "qmk": "KC_7"
+      },
+      {
+        "position": 10,
+        "zmk": "&kp N8",
+        "qmk": "KC_8"
+      },
+      {
+        "position": 11,
+        "zmk": "&kp N9",
+        "qmk": "KC_9"
+      },
+      {
+        "position": 12,
+        "zmk": "&kp N0",
+        "qmk": "KC_0"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp BSPC",
+        "qmk": "KC_BSPC"
+      },
+      {
+        "position": 14,
+        "zmk": "&kp FSLH",
+        "qmk": "KC_SLSH"
+      },
+      {
+        "position": 15,
+        "zmk": "&kp LCTRL",
+        "qmk": "KC_LCTL"
+      },
+      {
+        "position": 16,
+        "zmk": "&kp LGUI",
+        "qmk": "KC_LGUI"
+      },
+      {
+        "position": 17,
+        "zmk": "&kp LALT",
+        "qmk": "KC_LALT"
+      },
+      {
+        "position": 18,
+        "zmk": "&kp LSHFT",
+        "qmk": "KC_LSFT"
+      },
+      {
+        "position": 19,
+        "zmk": "&kp MINUS",
+        "qmk": "KC_MINS"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&kp COLON",
+        "qmk": "KC_COLN"
+      },
+      {
+        "position": 23,
+        "zmk": "&kp LEFT",
+        "qmk": "KC_LEFT"
+      },
+      {
+        "position": 24,
+        "zmk": "&kp DOWN",
+        "qmk": "KC_DOWN"
+      },
+      {
+        "position": 25,
+        "zmk": "&kp UP",
+        "qmk": "KC_UP"
+      },
+      {
+        "position": 26,
+        "zmk": "&kp RIGHT",
+        "qmk": "KC_RIGHT"
+      },
+      {
+        "position": 27,
+        "zmk": "&kp DOT",
+        "qmk": "KC_DOT"
+      },
+      {
+        "position": 28,
+        "zmk": "&kp F12",
+        "qmk": "KC_F12"
+      },
+      {
+        "position": 29,
+        "zmk": "&kp F1",
+        "qmk": "KC_F1"
+      },
+      {
+        "position": 30,
+        "zmk": "&kp F2",
+        "qmk": "KC_F2"
+      },
+      {
+        "position": 31,
+        "zmk": "&kp F3",
+        "qmk": "KC_F3"
+      },
+      {
+        "position": 32,
+        "zmk": "&kp F4",
+        "qmk": "KC_F4"
+      },
+      {
+        "position": 33,
+        "zmk": "&kp F5",
+        "qmk": "KC_F5"
+      },
+      {
+        "position": 34,
+        "zmk": "&kp F6",
+        "qmk": "KC_F6"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp F7",
+        "qmk": "KC_F7"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp F8",
+        "qmk": "KC_F8"
+      },
+      {
+        "position": 37,
+        "zmk": "&kp F9",
+        "qmk": "KC_F9"
+      },
+      {
+        "position": 38,
+        "zmk": "&kp F10",
+        "qmk": "KC_F10"
+      },
+      {
+        "position": 39,
+        "zmk": "&kp F11",
+        "qmk": "KC_F11"
+      },
+      {
+        "position": 40,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 41,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 42,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 43,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 44,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 45,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      }
+    ]
+  },
+  {
+    "layer": "sym",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&kp GRAVE",
+        "qmk": "KC_GRV"
+      },
+      {
+        "position": 1,
+        "zmk": "&kp EXCL",
+        "qmk": "KC_EXLM"
+      },
+      {
+        "position": 2,
+        "zmk": "&kp AT",
+        "qmk": "KC_AT"
+      },
+      {
+        "position": 3,
+        "zmk": "&kp HASH",
+        "qmk": "KC_HASH"
+      },
+      {
+        "position": 4,
+        "zmk": "&kp DLLR",
+        "qmk": "KC_DLR"
+      },
+      {
+        "position": 5,
+        "zmk": "&kp PRCNT",
+        "qmk": "KC_PERC"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&kp CARET",
+        "qmk": "KC_CIRC"
+      },
+      {
+        "position": 9,
+        "zmk": "&kp AMPS",
+        "qmk": "KC_AMPR"
+      },
+      {
+        "position": 10,
+        "zmk": "&kp ASTRK",
+        "qmk": "KC_ASTR"
+      },
+      {
+        "position": 11,
+        "zmk": "&kp LPAR",
+        "qmk": "KC_LPRN"
+      },
+      {
+        "position": 12,
+        "zmk": "&kp RPAR",
+        "qmk": "KC_RPRN"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp BSPC",
+        "qmk": "KC_BSPC"
+      },
+      {
+        "position": 14,
+        "zmk": "&kp TILDE",
+        "qmk": "KC_TILD"
+      },
+      {
+        "position": 15,
+        "zmk": "&kp LCTRL",
+        "qmk": "KC_LCTL"
+      },
+      {
+        "position": 16,
+        "zmk": "&kp LGUI",
+        "qmk": "KC_LGUI"
+      },
+      {
+        "position": 17,
+        "zmk": "&kp LALT",
+        "qmk": "KC_LALT"
+      },
+      {
+        "position": 18,
+        "zmk": "&kp LSHFT",
+        "qmk": "KC_LSFT"
+      },
+      {
+        "position": 19,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&kp MINUS",
+        "qmk": "KC_MINS"
+      },
+      {
+        "position": 23,
+        "zmk": "&kp FSLH",
+        "qmk": "KC_SLSH"
+      },
+      {
+        "position": 24,
+        "zmk": "&kp LBKT",
+        "qmk": "KC_LBRC"
+      },
+      {
+        "position": 25,
+        "zmk": "&kp RBKT",
+        "qmk": "KC_RBRC"
+      },
+      {
+        "position": 26,
+        "zmk": "&kp BSLH",
+        "qmk": "KC_BSLS"
+      },
+      {
+        "position": 27,
+        "zmk": "&kp EQUAL",
+        "qmk": "KC_EQL"
+      },
+      {
+        "position": 28,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 29,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 30,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 31,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 32,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 33,
+        "zmk": "&tog NUMPAD",
+        "qmk": "TG(NUMPAD)"
+      },
+      {
+        "position": 34,
+        "zmk": "&kp UNDER",
+        "qmk": "KC_UNDS"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp QMARK",
+        "qmk": "KC_QUES"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp LBRC",
+        "qmk": "KC_LCBR"
+      },
+      {
+        "position": 37,
+        "zmk": "&kp RBRC",
+        "qmk": "KC_RCBR"
+      },
+      {
+        "position": 38,
+        "zmk": "&kp PIPE",
+        "qmk": "KC_PIPE"
+      },
+      {
+        "position": 39,
+        "zmk": "&kp PLUS",
+        "qmk": "KC_PLUS"
+      },
+      {
+        "position": 40,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 41,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 42,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 43,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 44,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 45,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      }
+    ]
+  },
+  {
+    "layer": "nav",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 1,
+        "zmk": "&kp LG(W)",
+        "qmk": "LGUI(KC_W)"
+      },
+      {
+        "position": 2,
+        "zmk": "&kp LA(LG(LEFT))",
+        "qmk": "LALT(LGUI(KC_LEFT))"
+      },
+      {
+        "position": 3,
+        "zmk": "&kp LG(T)",
+        "qmk": "LGUI(KC_T)"
+      },
+      {
+        "position": 4,
+        "zmk": "&kp LA(LG(RIGHT))",
+        "qmk": "LALT(LGUI(KC_RIGHT))"
+      },
+      {
+        "position": 5,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&kp PG_UP",
+        "qmk": "KC_PGUP"
+      },
+      {
+        "position": 9,
+        "zmk": "&kp LG(LEFT)",
+        "qmk": "LGUI(KC_LEFT)"
+      },
+      {
+        "position": 10,
+        "zmk": "&kp LG(RIGHT)",
+        "qmk": "LGUI(KC_RIGHT)"
+      },
+      {
+        "position": 11,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 12,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp DEL",
+        "qmk": "KC_DEL"
+      },
+      {
+        "position": 14,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 15,
+        "zmk": "&kp LCTRL",
+        "qmk": "KC_LCTL"
+      },
+      {
+        "position": 16,
+        "zmk": "&kp LGUI",
+        "qmk": "KC_LGUI"
+      },
+      {
+        "position": 17,
+        "zmk": "&kp LALT",
+        "qmk": "KC_LALT"
+      },
+      {
+        "position": 18,
+        "zmk": "&kp LSHFT",
+        "qmk": "KC_LSFT"
+      },
+      {
+        "position": 19,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&kp PG_DN",
+        "qmk": "KC_PGDN"
+      },
+      {
+        "position": 23,
+        "zmk": "&kp LEFT",
+        "qmk": "KC_LEFT"
+      },
+      {
+        "position": 24,
+        "zmk": "&kp DOWN",
+        "qmk": "KC_DOWN"
+      },
+      {
+        "position": 25,
+        "zmk": "&kp UP",
+        "qmk": "KC_UP"
+      },
+      {
+        "position": 26,
+        "zmk": "&kp RIGHT",
+        "qmk": "KC_RIGHT"
+      },
+      {
+        "position": 27,
+        "zmk": "&kp BSPC",
+        "qmk": "KC_BSPC"
+      },
+      {
+        "position": 28,
+        "zmk": "&kp LS(LG(Z))",
+        "qmk": "LSFT(LGUI(KC_Z))"
+      },
+      {
+        "position": 29,
+        "zmk": "&kp LG(Z)",
+        "qmk": "LGUI(KC_Z)"
+      },
+      {
+        "position": 30,
+        "zmk": "&kp LG(X)",
+        "qmk": "LGUI(KC_X)"
+      },
+      {
+        "position": 31,
+        "zmk": "&kp LG(C)",
+        "qmk": "LGUI(KC_C)"
+      },
+      {
+        "position": 32,
+        "zmk": "&kp LG(V)",
+        "qmk": "LGUI(KC_V)"
+      },
+      {
+        "position": 33,
+        "zmk": "&kp SPACE",
+        "qmk": "KC_SPC"
+      },
+      {
+        "position": 34,
+        "zmk": "&kp LG(A)",
+        "qmk": "LGUI(KC_A)"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp LS(LA(LEFT))",
+        "qmk": "LSFT(LALT(KC_LEFT))"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp LA(LEFT)",
+        "qmk": "LALT(KC_LEFT)"
+      },
+      {
+        "position": 37,
+        "zmk": "&kp LA(RIGHT)",
+        "qmk": "LALT(KC_RIGHT)"
+      },
+      {
+        "position": 38,
+        "zmk": "&kp LS(LA(RIGHT))",
+        "qmk": "LSFT(LALT(KC_RIGHT))"
+      },
+      {
+        "position": 39,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 40,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 41,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 42,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 43,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 44,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 45,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      }
+    ]
+  },
+  {
+    "layer": "win",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 1,
+        "zmk": "&kp LC(LA(D))",
+        "qmk": "LCTL(LALT(KC_D))"
+      },
+      {
+        "position": 2,
+        "zmk": "&kp LC(LA(F))",
+        "qmk": "LCTL(LALT(KC_F))"
+      },
+      {
+        "position": 3,
+        "zmk": "&kp LC(LA(G))",
+        "qmk": "LCTL(LALT(KC_G))"
+      },
+      {
+        "position": 4,
+        "zmk": "&kp LC(LA(U))",
+        "qmk": "LCTL(LALT(KC_U))"
+      },
+      {
+        "position": 5,
+        "zmk": "&kp LC(LA(I))",
+        "qmk": "LCTL(LALT(KC_I))"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&kp LC(LA(U))",
+        "qmk": "LCTL(LALT(KC_U))"
+      },
+      {
+        "position": 9,
+        "zmk": "&kp LC(LA(I))",
+        "qmk": "LCTL(LALT(KC_I))"
+      },
+      {
+        "position": 10,
+        "zmk": "&kp LC(LA(D))",
+        "qmk": "LCTL(LALT(KC_D))"
+      },
+      {
+        "position": 11,
+        "zmk": "&kp LC(LA(F))",
+        "qmk": "LCTL(LALT(KC_F))"
+      },
+      {
+        "position": 12,
+        "zmk": "&kp LC(LA(G))",
+        "qmk": "LCTL(LALT(KC_G))"
+      },
+      {
+        "position": 13,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 14,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 15,
+        "zmk": "&kp LC(LA(LEFT))",
+        "qmk": "LCTL(LALT(KC_LEFT))"
+      },
+      {
+        "position": 16,
+        "zmk": "&kp LC(LA(DOWN))",
+        "qmk": "LCTL(LALT(KC_DOWN))"
+      },
+      {
+        "position": 17,
+        "zmk": "&kp LC(LA(UP))",
+        "qmk": "LCTL(LALT(KC_UP))"
+      },
+      {
+        "position": 18,
+        "zmk": "&kp LC(LA(RIGHT))",
+        "qmk": "LCTL(LALT(KC_RIGHT))"
+      },
+      {
+        "position": 19,
+        "zmk": "&kp LC(LA(RET))",
+        "qmk": "LCTL(LALT(KC_ENT))"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&kp LC(LA(RET))",
+        "qmk": "LCTL(LALT(KC_ENT))"
+      },
+      {
+        "position": 23,
+        "zmk": "&kp LC(LA(LEFT))",
+        "qmk": "LCTL(LALT(KC_LEFT))"
+      },
+      {
+        "position": 24,
+        "zmk": "&kp LC(LA(DOWN))",
+        "qmk": "LCTL(LALT(KC_DOWN))"
+      },
+      {
+        "position": 25,
+        "zmk": "&kp LC(LA(UP))",
+        "qmk": "LCTL(LALT(KC_UP))"
+      },
+      {
+        "position": 26,
+        "zmk": "&kp LC(LA(RIGHT))",
+        "qmk": "LCTL(LALT(KC_RIGHT))"
+      },
+      {
+        "position": 27,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 28,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 29,
+        "zmk": "&kp LC(LA(E))",
+        "qmk": "LCTL(LALT(KC_E))"
+      },
+      {
+        "position": 30,
+        "zmk": "&kp LC(LA(R))",
+        "qmk": "LCTL(LALT(KC_R))"
+      },
+      {
+        "position": 31,
+        "zmk": "&kp LC(LA(T))",
+        "qmk": "LCTL(LALT(KC_T))"
+      },
+      {
+        "position": 32,
+        "zmk": "&kp LC(LA(J))",
+        "qmk": "LCTL(LALT(KC_J))"
+      },
+      {
+        "position": 33,
+        "zmk": "&kp LC(LA(K))",
+        "qmk": "LCTL(LALT(KC_K))"
+      },
+      {
+        "position": 34,
+        "zmk": "&kp LC(LA(J))",
+        "qmk": "LCTL(LALT(KC_J))"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp LC(LA(K))",
+        "qmk": "LCTL(LALT(KC_K))"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp LC(LA(E))",
+        "qmk": "LCTL(LALT(KC_E))"
+      },
+      {
+        "position": 37,
+        "zmk": "&kp LC(LA(R))",
+        "qmk": "LCTL(LALT(KC_R))"
+      },
+      {
+        "position": 38,
+        "zmk": "&kp LC(LA(T))",
+        "qmk": "LCTL(LALT(KC_T))"
+      },
+      {
+        "position": 39,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 40,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 41,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 42,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 43,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 44,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 45,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      }
+    ]
+  },
+  {
+    "layer": "short",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 1,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 2,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 3,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 4,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 5,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 9,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 10,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 11,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 12,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp LC(LG(Q))",
+        "qmk": "LCTL(LGUI(KC_Q))"
+      },
+      {
+        "position": 14,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 15,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 16,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 17,
+        "zmk": "&kp LS(LG(N4))",
+        "qmk": "LSFT(LGUI(KC_4))"
+      },
+      {
+        "position": 18,
+        "zmk": "&kp LC(LS(LG(N4)))",
+        "qmk": "LCTL(LSFT(LGUI(KC_4)))"
+      },
+      {
+        "position": 19,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 23,
+        "zmk": "&kp C_VOL_DN",
+        "qmk": "KC_VOLD"
+      },
+      {
+        "position": 24,
+        "zmk": "&kp C_MUTE",
+        "qmk": "KC_MUTE"
+      },
+      {
+        "position": 25,
+        "zmk": "&kp C_VOL_UP",
+        "qmk": "KC_VOLU"
+      },
+      {
+        "position": 26,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 27,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 28,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 29,
+        "zmk": "&kp LS(LG(O))",
+        "qmk": "LSFT(LGUI(KC_O))"
+      },
+      {
+        "position": 30,
+        "zmk": "&kp LS(LG(M))",
+        "qmk": "LSFT(LGUI(KC_M))"
+      },
+      {
+        "position": 31,
+        "zmk": "&kp LS(LG(K))",
+        "qmk": "LSFT(LGUI(KC_K))"
+      },
+      {
+        "position": 32,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 33,
+        "zmk": "&kp LS(LG(H))",
+        "qmk": "LSFT(LGUI(KC_H))"
+      },
+      {
+        "position": 34,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp C_VOICE_COMMAND",
+        "qmk": "KC_ASST"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp LC(LG(SPACE))",
+        "qmk": "LCTL(LGUI(KC_SPC))"
+      },
+      {
+        "position": 37,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 38,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 39,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 40,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 41,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 42,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 43,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 44,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 45,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      }
+    ]
+  },
+  {
+    "layer": "numpad",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 1,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 2,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 3,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 4,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 5,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&kp FSLH",
+        "qmk": "KC_SLSH"
+      },
+      {
+        "position": 9,
+        "zmk": "&kp N7",
+        "qmk": "KC_7"
+      },
+      {
+        "position": 10,
+        "zmk": "&kp N8",
+        "qmk": "KC_8"
+      },
+      {
+        "position": 11,
+        "zmk": "&kp N9",
+        "qmk": "KC_9"
+      },
+      {
+        "position": 12,
+        "zmk": "&kp MINUS",
+        "qmk": "KC_MINS"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp EQUAL",
+        "qmk": "KC_EQL"
+      },
+      {
+        "position": 14,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 15,
+        "zmk": "&kp LCTRL",
+        "qmk": "KC_LCTL"
+      },
+      {
+        "position": 16,
+        "zmk": "&kp LGUI",
+        "qmk": "KC_LGUI"
+      },
+      {
+        "position": 17,
+        "zmk": "&kp LALT",
+        "qmk": "KC_LALT"
+      },
+      {
+        "position": 18,
+        "zmk": "&kp LSHFT",
+        "qmk": "KC_LSFT"
+      },
+      {
+        "position": 19,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&kp ASTRK",
+        "qmk": "KC_ASTR"
+      },
+      {
+        "position": 23,
+        "zmk": "&kp N4",
+        "qmk": "KC_4"
+      },
+      {
+        "position": 24,
+        "zmk": "&kp N5",
+        "qmk": "KC_5"
+      },
+      {
+        "position": 25,
+        "zmk": "&kp N6",
+        "qmk": "KC_6"
+      },
+      {
+        "position": 26,
+        "zmk": "&kp PLUS",
+        "qmk": "KC_PLUS"
+      },
+      {
+        "position": 27,
+        "zmk": "&kp RET",
+        "qmk": "KC_ENT"
+      },
+      {
+        "position": 28,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 29,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 30,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 31,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 32,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 33,
+        "zmk": "&tog NUMPAD",
+        "qmk": "TG(NUMPAD)"
+      },
+      {
+        "position": 34,
+        "zmk": "&kp N0",
+        "qmk": "KC_0"
+      },
+      {
+        "position": 35,
+        "zmk": "&kp N1",
+        "qmk": "KC_1"
+      },
+      {
+        "position": 36,
+        "zmk": "&kp N2",
+        "qmk": "KC_2"
+      },
+      {
+        "position": 37,
+        "zmk": "&kp N3",
+        "qmk": "KC_3"
+      },
+      {
+        "position": 38,
+        "zmk": "&mt DOT COMMA",
+        "qmk": "TD(2)"
+      },
+      {
+        "position": 39,
+        "zmk": "&kp LS(SEMI)",
+        "qmk": "LSFT(KC_SCLN)"
+      },
+      {
+        "position": 40,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 41,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 42,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 43,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 44,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      },
+      {
+        "position": 45,
+        "zmk": "&trans",
+        "qmk": "KC_TRNS"
+      }
+    ]
+  },
+  {
+    "layer": "sys",
+    "bindings": [
+      {
+        "position": 0,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 1,
+        "zmk": "&bt BT_SEL 0",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 2,
+        "zmk": "&bt BT_SEL 1",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 3,
+        "zmk": "&bt BT_SEL 2",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 4,
+        "zmk": "&bt BT_SEL 3",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 5,
+        "zmk": "&bt BT_SEL 4",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 6,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 7,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 8,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 9,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 10,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 11,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 12,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 13,
+        "zmk": "&kp C_PWR",
+        "qmk": "KC_PWR"
+      },
+      {
+        "position": 14,
+        "zmk": "&bt BT_CLR",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 15,
+        "zmk": "&ext_power EP_TOG",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 16,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 17,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 18,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 19,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 20,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 21,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 22,
+        "zmk": "&rgb_ug RGB_HUD",
+        "qmk": "RM_HUED"
+      },
+      {
+        "position": 23,
+        "zmk": "&rgb_ug RGB_HUI",
+        "qmk": "RM_HUEU"
+      },
+      {
+        "position": 24,
+        "zmk": "&rgb_ug RGB_SAD",
+        "qmk": "RM_SATD"
+      },
+      {
+        "position": 25,
+        "zmk": "&rgb_ug RGB_SAI",
+        "qmk": "RM_SATU"
+      },
+      {
+        "position": 26,
+        "zmk": "&rgb_ug RGB_BRD",
+        "qmk": "RM_VALD"
+      },
+      {
+        "position": 27,
+        "zmk": "&rgb_ug RGB_BRI",
+        "qmk": "RM_VALU"
+      },
+      {
+        "position": 28,
+        "zmk": "&sys_reset",
+        "qmk": "QK_RBT"
+      },
+      {
+        "position": 29,
+        "zmk": "&bootloader",
+        "qmk": "QK_BOOT"
+      },
+      {
+        "position": 30,
+        "zmk": "&none",
+        "qmk": "EE_CLR"
+      },
+      {
+        "position": 31,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 32,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 33,
+        "zmk": "&studio_unlock",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 34,
+        "zmk": "&rgb_ug RGB_TOG",
+        "qmk": "RM_TOGG"
+      },
+      {
+        "position": 35,
+        "zmk": "&rgb_ug RGB_EFF",
+        "qmk": "RM_NEXT"
+      },
+      {
+        "position": 36,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 37,
+        "zmk": "&none",
+        "qmk": "EE_CLR"
+      },
+      {
+        "position": 38,
+        "zmk": "&bootloader",
+        "qmk": "QK_BOOT"
+      },
+      {
+        "position": 39,
+        "zmk": "&sys_reset",
+        "qmk": "QK_RBT"
+      },
+      {
+        "position": 40,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 41,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 42,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 43,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 44,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      },
+      {
+        "position": 45,
+        "zmk": "&none",
+        "qmk": "KC_NO"
+      }
+    ]
+  }
+]
