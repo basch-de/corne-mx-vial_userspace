@@ -172,11 +172,14 @@ betroffene Matrixprüfungen anpassen; keine separate Belegungskopie pflegen.
 Auch neue unversionierte Dateien auf Whitespacefehler prüfen. Für reine
 Dokumentationsänderungen sind keine Firmwaretests erforderlich.
 
-Stand: Herstellerreferenz und Keymaps auf dem Host geprüft, kein vollständiger
-ARM-/UF2-Build und kein GitHub-Actions-Lauf bestätigt. Hardwaretests und vier
+Stand: Herstellerreferenz und Keymaps auf dem Host geprüft, kein erfolgreicher
+ARM-/UF2-Build bestätigt. Der gemeldete Actions-Lauf scheiterte bei der zusätzlichen
+venv-Erstellung an fehlendem `ensurepip`. Der Workflow verwendet jetzt wie Keebarts
+CI direkt die vorinstallierte Umgebung des festgesetzten Containers. Keine eigene
+venv nötig; ein erfolgreicher neuer Lauf steht aus. Hardwaretests und vier
 zusätzliche Tastenbelegungen offen. Nichts geflasht oder auf der Tastatur gelöscht.
-Firmware-Commit und Buildcontainer sind festgesetzt; bewegliche Python-Pakete,
-Actions-Tags und zufällige Build-ID erlauben keine Zusage bitidentischer Builds.
+Firmware-Commit und Buildcontainer sind festgesetzt; Actions-Tags und zufällige
+Build-ID erlauben keine Zusage bitidentischer Builds.
 
 Erfolgreichen Hosttest nicht als erfolgreichen Firmwarebuild melden. Build- und
 Hardwareergebnisse nur für den konkret geprüften Stand berichten und dokumentieren.

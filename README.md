@@ -40,7 +40,9 @@ Buildziel: `keebart/corne_mx_pro/standard`. Der
 [Workflow](.github/workflows/build.yml) bezieht `Keebart/vial-qmk-keebart`, Branch
 `vial`, festgesetzt auf Commit `63e2d6248209f1926e60daa5b950c771cf09d837`.
 Er verwendet External Userspace, einen festgesetzten QMK-Buildcontainer und
-rekursive Submodule. Hardwaredefinitionen und QMK-Core werden nicht verändert.
+rekursive Submodule. Die vorinstallierte Buildumgebung wird wie in Keebarts CI
+direkt verwendet; eine zusätzliche Python-venv wird nicht angelegt.
+Hardwaredefinitionen und QMK-Core werden nicht verändert.
 
 Nach einem Push oder einem manuellen Workflowstart baut Actions zuerst die
 Herstellerreferenz und dann die persönliche Keymap. Beide UF2-Dateien und
@@ -59,7 +61,9 @@ git diff --check
 dem Host mit echten QMK-Keycodes und Herstellerlayout kompiliert. 32 Host-
 Ereignistests sowie Prüfungen der tatsächlichen Keymap-Matrix bestehen. Hardware,
 USB und persistenter Speicher werden dabei simuliert. Ein vollständiger
-RP2040-/UF2-Build, ein GitHub-Actions-Lauf und Hardwaretests stehen noch aus.
+RP2040-/UF2-Build und Hardwaretests stehen noch aus. Der gemeldete Actions-Lauf
+scheiterte beim Anlegen einer Python-venv wegen fehlendem `ensurepip`; dieser
+Vorbereitungsschritt wurde entfernt. Ein erfolgreicher neuer Lauf steht aus.
 Es wurde nichts geflasht und kein EEPROM-Reset auf der Tastatur ausgeführt.
 
 Technische Hinweise, Persistenz und offene Hardwaretests:

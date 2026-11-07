@@ -94,15 +94,18 @@ adressiert nicht automatisch den rechten Controller. Es gibt keine eigene Split-
 ## Build und Hardwaretests
 
 Der Workflow baut die unveränderte Herstellerreferenz vor der persönlichen Keymap
-und veröffentlicht getrennte Artefakte. Firmware-Commit und Container sind
-festgesetzt; Actions-Tags, Python-Paketauflösung und zufällige Build-ID verhindern
+und veröffentlicht getrennte Artefakte. Wie Keebarts CI verwendet er direkt die
+vorinstallierte Python-/QMK-Umgebung des festgesetzten Containers. Die zusätzliche
+venv-Erstellung wurde nach dem gemeldeten `ensurepip`-Fehler entfernt.
+Firmware-Commit und Container sind festgesetzt; Actions-Tags und zufällige Build-ID verhindern
 eine Zusage bitidentischer Builds. Die Artefakte enthalten Build-Provenienz.
 
 `check_sources.py` prüft Herstellerstand, Referenzdateien und Geometrie.
 `tests/run.py` prüft die kompilierten Keymap-Daten und 32 Ereignisszenarien mit
 echten Keebart-Tap/Hold-, Tap-Dance- und Caps-Word-Implementierungen; Hardware,
 USB und EEPROM sind simuliert. Ein vollständiger ARM-/UF2-Build ist damit nicht
-bestätigt. Online-Build und Hardwaretests stehen aus.
+bestätigt. Ein erfolgreicher Online-Build nach der Workflowkorrektur und
+Hardwaretests stehen aus.
 
 Vor dem Einsatz noch zu prüfen:
 

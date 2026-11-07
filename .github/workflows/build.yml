@@ -40,9 +40,9 @@ jobs:
       - name: Configure build environment
         working-directory: firmware
         run: |
-          python3 -m venv --system-site-packages /tmp/corne-qmk-venv
-          /tmp/corne-qmk-venv/bin/pip install -r requirements.txt
-          echo /tmp/corne-qmk-venv/bin >> "$GITHUB_PATH"
+          # Use the preinstalled environment, as in Keebart's CI for this image.
+          python3 --version
+          qmk --version
           qmk config user.qmk_home="$GITHUB_WORKSPACE/firmware"
 
       - name: Record build provenance
