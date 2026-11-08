@@ -111,8 +111,10 @@ Buildvorlage ist Keebarts `.github/workflows/ci.yml` am oben genannten Analysest
 Container, direkte Umgebung, Git-Safe-Directory und `qmk mass-compile` verwenden.
 Für External Userspace kommen zweiter Checkout, `QMK_USERSPACE`, CLI-Pfade,
 unsere Prüfungen und Artefakt-Uploads hinzu. Keine zusätzliche venv einführen.
-Der Buildcontainer bleibt per Digest fest; Actions bleiben auf `@v4`, Runner auf
-`ubuntu-latest`. Submodule rekursiv an den Commits der aufgelösten Firmware laden,
+Der Buildcontainer bleibt per Digest fest; `actions/checkout` bleibt auf `@v4`,
+`actions/upload-artifact` verwendet auf Nutzerwunsch `@v7`. Runner bleibt auf
+`ubuntu-latest`. Artefakte weiterhin mit der standardmäßigen ZIP-Archivierung
+hochladen. Submodule rekursiv an den Commits der aufgelösten Firmware laden,
 nicht unabhängig auf die neuesten Submodule-Branches wechseln.
 `README.md` ist der Einstieg; [docs/PROJECT.md](docs/PROJECT.md) enthält technische
 Hinweise und offene Hardwaretests. Diese Dokumentation bei relevanten Änderungen aktualisieren.

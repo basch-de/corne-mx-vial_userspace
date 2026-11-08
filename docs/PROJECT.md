@@ -122,8 +122,12 @@ Zusätzlich braucht External Userspace zwei Checkouts, die CLI-Konfiguration von
 Uploads bleiben projektspezifisch. Die zusätzliche
 venv-Erstellung wurde nach dem gemeldeten `ensurepip`-Fehler entfernt.
 Der Container bleibt per Digest festgesetzt. Submodule werden rekursiv an den
-Commits des aufgelösten Firmwarestands geladen. Actions bleiben auf `@v4`, Runner
-auf `ubuntu-latest`. Branchupdates, Actions-Tags und zufällige Build-ID verhindern
+Commits des aufgelösten Firmwarestands geladen. `actions/checkout` bleibt auf
+`@v4`, `actions/upload-artifact` verwendet `@v7` mit Node.js 24 und standardmäßiger
+ZIP-Archivierung. Runner bleibt auf `ubuntu-latest`. Referenz:
+[Upload-Artifact v7](https://github.com/actions/upload-artifact/tree/v7).
+Ein erfolgreicher Upload-Lauf mit dieser neuen Action-Version ist noch zu prüfen.
+Branchupdates, Actions-Tags und zufällige Build-ID verhindern
 eine Zusage bitidentischer Builds. Die separaten Artefakte
 `build-provenance-manufacturer` und `build-provenance-personal` enthalten Revisionen,
 Werkzeugversionen, Compilerlogs und nach erfolgreichem Build UF2-SHA256. Bei Fehlern
