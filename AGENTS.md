@@ -81,8 +81,14 @@ Eigene Keymap-Dateien liegen unter `keyboards/keebart/corne_mx_pro/keymaps/basch
 | `vial.json` | Unveränderte Herstellergeometrie |
 
 Herstellerreferenz unter `keymaps/keebart_vial_stock/` bytegleich halten.
-`qmk.json` enthält beide Buildziele. Der Workflow baut die Referenz zuerst und
-veröffentlicht danach die persönliche Firmware als separates UF2-Artefakt.
+`qmk.json` enthält beide Buildziele. Der Workflow baut beide in einem gemeinsamen
+`qmk mass-compile`-Aufruf mit parallelen Jobs und getrennten UF2-Artefakten.
+Vorhandene UF2-Dateien auch bei einem Teilfehler hochladen; der Build bleibt dann
+fehlgeschlagen. Bei abgebrochenen Läufen keine UF2-Uploads starten.
+Buildvorlage ist Keebarts `.github/workflows/ci.yml` am festgesetzten Commit:
+Container, direkte Umgebung, Git-Safe-Directory und `qmk mass-compile` verwenden.
+Für External Userspace kommen zweiter Checkout, `QMK_USERSPACE`, CLI-Pfade,
+unsere Prüfungen und Artefakt-Uploads hinzu. Keine zusätzliche venv einführen.
 `README.md` ist der Einstieg; [docs/PROJECT.md](docs/PROJECT.md) enthält technische
 Hinweise und offene Hardwaretests. Diese Dokumentation bei relevanten Änderungen aktualisieren.
 

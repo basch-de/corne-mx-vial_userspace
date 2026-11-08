@@ -93,12 +93,21 @@ adressiert nicht automatisch den rechten Controller. Es gibt keine eigene Split-
 
 ## Build und Hardwaretests
 
-Der Workflow baut die unveränderte Herstellerreferenz vor der persönlichen Keymap
-und veröffentlicht getrennte Artefakte. Wie Keebarts CI verwendet er direkt die
-vorinstallierte Python-/QMK-Umgebung des festgesetzten Containers. Die zusätzliche
+Der Workflow baut die unveränderte Herstellerreferenz und die persönliche Keymap
+in einem gemeinsamen Aufruf und veröffentlicht getrennte Artefakte. Vorlage ist
+[Keebarts CI am festgesetzten Commit](https://github.com/Keebart/vial-qmk-keebart/blob/63e2d6248209f1926e60daa5b950c771cf09d837/.github/workflows/ci.yml):
+gleicher Container, direkte vorinstallierte Umgebung, Git-Safe-Directory und
+`qmk mass-compile -j "$(nproc)"`. Statt aller Herstellerboards werden nur unsere
+beiden Targets mit einem gemeinsamen Budget paralleler Jobs gebaut. Erfolgreich
+erzeugte UF2-Dateien werden auch bei einem Teilfehler hochgeladen; der Lauf bleibt
+dann fehlgeschlagen. Bei Abbruch entfallen die UF2-Uploads. Fehlerlogs erscheinen
+bei Fehlschlag im Joblog.
+Zusätzlich braucht External Userspace zwei Checkouts, die CLI-Konfiguration von
+`user.qmk_home`/`user.overlay_dir` und `QMK_USERSPACE`; Prüfungen und Artefakt-
+Uploads bleiben projektspezifisch. Die zusätzliche
 venv-Erstellung wurde nach dem gemeldeten `ensurepip`-Fehler entfernt.
-Firmware-Commit und Container sind festgesetzt; Actions-Tags und zufällige Build-ID verhindern
-eine Zusage bitidentischer Builds. Die Artefakte enthalten Build-Provenienz.
+Firmware-Commit und Container sind festgesetzt; Actions-Tags und zufällige Build-ID
+verhindern eine Zusage bitidentischer Builds. Die Artefakte enthalten Build-Provenienz.
 
 `check_sources.py` prüft Herstellerstand, Referenzdateien und Geometrie.
 `tests/run.py` prüft die kompilierten Keymap-Daten und 32 Ereignisszenarien mit

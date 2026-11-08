@@ -40,14 +40,18 @@ Buildziel: `keebart/corne_mx_pro/standard`. Der
 [Workflow](.github/workflows/build.yml) bezieht `Keebart/vial-qmk-keebart`, Branch
 `vial`, festgesetzt auf Commit `63e2d6248209f1926e60daa5b950c771cf09d837`.
 Er verwendet External Userspace, einen festgesetzten QMK-Buildcontainer und
-rekursive Submodule. Die vorinstallierte Buildumgebung wird wie in Keebarts CI
-direkt verwendet; eine zusätzliche Python-venv wird nicht angelegt.
+rekursive Submodule. Container und `qmk mass-compile`-Buildaufruf sind aus
+[Keebarts CI](https://github.com/Keebart/vial-qmk-keebart/blob/63e2d6248209f1926e60daa5b950c771cf09d837/.github/workflows/ci.yml)
+übernommen und auf unsere beiden Targets begrenzt. Userspace-Pfade, Prüfungen
+und Artefakt-Uploads ergänzen den Herstellerablauf. Die vorinstallierte
+Buildumgebung wird direkt verwendet; eine zusätzliche Python-venv wird nicht angelegt.
 Hardwaredefinitionen und QMK-Core werden nicht verändert.
 
-Nach einem Push oder einem manuellen Workflowstart baut Actions zuerst die
-Herstellerreferenz und dann die persönliche Keymap. Beide UF2-Dateien und
-Build-Metadaten werden als getrennte Artefakte bereitgestellt. Es gibt keine
-Flash-Schritte.
+Nach einem Push oder einem manuellen Workflowstart baut Actions die
+Herstellerreferenz und die persönliche Keymap gemeinsam mit parallelen Jobs.
+Erfolgreich erzeugte UF2-Dateien werden auch bei einem Teilfehler als getrennte
+Artefakte bereitgestellt; der Lauf bleibt dann fehlgeschlagen. Build-Metadaten
+werden separat hochgeladen. Es gibt keine Flash-Schritte.
 
 Mit einem vorhandenen Checkout des festgesetzten Keebart-Commits:
 
