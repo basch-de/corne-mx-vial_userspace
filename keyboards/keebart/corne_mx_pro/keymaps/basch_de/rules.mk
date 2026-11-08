@@ -8,4 +8,4 @@ REPEAT_KEY_ENABLE = yes
 QMK_SETTINGS = yes
 TAP_DANCE_ENABLE = yes
 
-SRC += behaviors.c
+SRC += defaults.c

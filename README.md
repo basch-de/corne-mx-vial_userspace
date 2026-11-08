@@ -73,15 +73,18 @@ git diff --check
 ```
 
 Die Quellenprüfung akzeptiert neue Commit-IDs und prüft dafür Hardwaregeometrie,
-Vial-Identität, 16 Layer und die verwendeten Settings-Protokoll-IDs. Relevante
-Herstelleränderungen können Anpassungen der persönlichen Firmware erfordern.
+Vial-Identität, 16 Layer, Initialisierungshooks und die verwendeten Settings-Protokoll-IDs.
+Relevante Herstelleränderungen können Anpassungen der persönlichen Firmware erfordern.
 
 **Prüfstand:** Lokal geprüft ist Firmware-Commit
 `63e2d6248209f1926e60daa5b950c771cf09d837`; das ist kein aktiver Build-Pin.
 Herstellerreferenz und Vial-Geometrie geprüft; beide Keymaps auf
-dem Host mit echten QMK-Keycodes und Herstellerlayout kompiliert. 32 Host-
-Ereignistests sowie Prüfungen der tatsächlichen Keymap-Matrix bestehen. Hardware,
-USB und persistenter Speicher werden dabei simuliert. Der Nutzer hat einen
+dem Host mit echten QMK-Keycodes und Herstellerlayout kompiliert. 35 Host-
+Ereignistests sowie Prüfungen der tatsächlichen Keymap-Matrix bestehen. Die Tests
+verwenden die kompilierten Tasten ihrer jeweiligen Layer und prüfen unter anderem
+Press/Release-Paare, freigegebene Layer und Ausgaben sowie Initialisierung und
+Erhalt fremder Einstellungen. Hardware, USB und persistenter Speicher werden dabei
+simuliert. Der Nutzer hat einen
 erfolgreichen Actions-Build bestätigt; Lauf-ID, gebaute Revisionen und Artefaktinhalte
 wurden dazu nicht separat geprüft. Hardware- und Vial-GUI-Tests stehen noch aus.
 Die zusätzliche venv-Erstellung, die zuvor am fehlenden `ensurepip` scheiterte,

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Compile real keymaps and test the checked-out action_tapping.c on the host.
 
-Only hardware/report functions are mocked. This is not an RP2040 firmware build.
+Hardware, storage, settings writes, layer lookup and reports are mocked.
+This is not an RP2040 build or a test of the complete QMK processing pipeline.
 Usage: python3 tests/run.py /path/to/keebart-firmware
 """
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -29,6 +31,11 @@ with tempfile.TemporaryDirectory(prefix='corne-host-') as directory:
     for name in ('process_tap_dance.c','process_tap_dance.h'):
         shutil.copy(firmware/'quantum/process_keycode'/name, tmp/name)
     shutil.copy(root/'tests/vial.h', tmp/'vial.h')
+    # Reuse the checked-out storage ABI, as in the Studio tests.
+    vial_header = (firmware/'quantum/vial.h').read_text()
+    entry = re.search(r'typedef struct \{\s*uint16_t on_tap;.*?\} vial_tap_dance_entry_t;', vial_header, re.S)
+    assert entry, 'Vial Tap Dance ABI declaration changed'
+    (tmp/'vial-abi.h').write_text('#pragma once\n' + entry[0] + '\n_Static_assert(sizeof(vial_tap_dance_entry_t) == 10, "Unexpected Vial ABI");\n')
     layout = json.loads((firmware / 'keyboards/keebart/corne_mx_pro/info.json').read_text())['layouts']['LAYOUT_split_3x6_3_ex2']['layout']
     matrix = [['KC_NO']*7 for _ in range(8)]
     for i, item in enumerate(layout):
@@ -64,14 +71,15 @@ with tempfile.TemporaryDirectory(prefix='corne-host-') as directory:
     caps_default = caps[caps.index('__attribute__((weak)) bool caps_word_press_user'):]
     (tmp/'caps-default.c').write_text('#include "mock.h"\n' + caps_default)
     options += ['-DTAPPING_TERM_PER_KEY', '-DQUICK_TAP_TERM_PER_KEY', '-DPERMISSIVE_HOLD_PER_KEY', '-DHOLD_ON_OTHER_KEY_PRESS_PER_KEY', '-DCHORDAL_HOLD']
-    subprocess.run(options + [str(tmp/'caps-default.c'), str(tmp/'settings-hooks.c'), str(tmp/'action_tapping.c'), str(tmp/'process_tap_dance.c'), str(keymap/'behaviors.c'), str(tmp/'vial-timing.o'),
+    subprocess.run(options + [str(tmp/'caps-default.c'), str(tmp/'settings-hooks.c'), str(tmp/'action_tapping.c'), str(tmp/'process_tap_dance.c'), str(keymap/'defaults.c'), str(tmp/'vial-timing.o'),
                              str(root/'tests/sequences.c'), '-o', str(tmp/'sequences')], check=True)
     scenarios = ['tap','timeout','nested-opposite','nested-same','roll-opposite','same-timeout',
                  'thumb-left','thumb-right','thumb-hold','quick-hrm-in','quick-hrm-out',
                  'quick-tab-in','quick-tab-out','quick-enter-in','layer-roll','layer-nested',
                  'spotlight','caps-word','comma-dot','timer-wrap','defaults-preserve','defaults-new-image',
                  'defaults-slave','defaults-failure','defaults-dance-failure','gui-timing',
-                 'td-hyper-hold','td-short-hold','td-comma-tap','td-interrupt','td-double','td-gui-edit']
+                 'td-hyper-hold','td-short-hold','td-comma-tap','td-interrupt','td-double','td-gui-edit',
+                 'defaults-old-marker','defaults-qmk-init','defaults-unrelated']
     for scenario in scenarios:
         subprocess.run([str(tmp/'sequences'), scenario], check=True)
     print(f'{len(scenarios)} host regression scenarios and compiled keymap checks passed; both keymaps compile with real QMK keycodes/layout.')

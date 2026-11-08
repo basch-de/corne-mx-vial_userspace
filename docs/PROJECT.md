@@ -25,12 +25,15 @@ laufende Abhängigkeit von dieser Quelle; `keymap.c` ist jetzt maßgeblich.
 
 | Datei in `keyboards/keebart/corne_mx_pro/keymaps/basch_de/` | Inhalt |
 |---|---|
-| `keymap.c` | Belegung und Encoder-Map direkt bearbeiten |
-| `behaviors.h` | Layernamen und Aliase für normale Mod-/Layer-Taps |
-| `behaviors.c` | Vial-Voreinstellungen, drei Tap-Dance-Einträge und Handzuordnung |
+| `keymap.c` | Belegung, Encoder-Map und Chordal-Hold-Handzuordnung |
+| `layers.h` | Gemeinsame Layernamen |
+| `defaults.c` | Vial-Voreinstellungen und drei Tap-Dance-Einträge |
 | `config.h` | Anfänglicher Tapping Term und Hersteller-Vial-Identität |
 | `rules.mk` | Aktivierte Standardfeatures und zusätzliche Quelldatei |
 | `vial.json` | Unveränderte Herstellergeometrie für Vial |
+
+Die Dateiaufteilung entspricht dem Studio-Projekt. Normale QMK-Tastencodes stehen
+direkt in der Keymap; der Layerheader enthält nur die Layernamen.
 
 Die Keymap verwendet acht vorbelegte und 16 verfügbare dynamische Layer. Auf allen
 acht vorbelegten Layern ist die vierteilige Hersteller-Encoder-Map vorhanden,
@@ -130,15 +133,27 @@ Die UF2-Artefaktnamen bleiben unverändert; die Herstellerdatei trägt jetzt den
 originalen Keymapnamen mit Endung `_vial.uf2`.
 
 `check_sources.py` protokolliert den Hersteller-Commit und prüft Kompatibilität:
-Hardware- und persönliche Vial-Geometrie, 16 Layer, UID, physisches Unlock und
-die Settings-Protokoll-IDs 7/22/23/26. Eine neue Commit-ID allein führt nicht zum
+die vollständige Matrixzuordnung aller 46 Positionen, persönliche Vial-Geometrie,
+16 Layer, UID, physisches Unlock, schwache Initialisierungshooks und die
+Settings-Protokoll-IDs 7/22/23/26. Eine neue Commit-ID allein führt nicht zum
 Abbruch; geänderte Schnittstellen oder Herstellerdefinitionen können Anpassungen
 oder einen erneuten Audit erfordern.
 Die Host-Kompilierungsprüfung nutzt die originale `vial`-Keymap aus dem
 Firmwarecheckout und die lokale persönliche Keymap.
-`tests/run.py` prüft die kompilierten Keymap-Daten und 32 Ereignisszenarien mit
+`tests/run.py` prüft die kompilierten Keymap-Daten und 35 Ereignisszenarien mit
 echten Keebart-Tap/Hold-, Tap-Dance- und Caps-Word-Implementierungen; Hardware,
-USB und EEPROM sind simuliert. Die lokale Prüfung bezieht sich bisher auf den
+USB und EEPROM sind simuliert. Aus dem Studio-Projekt übernommen sind physische
+Eingaben mit kompilierten Bindings, gemeinsame Press/Release-Prüfungen und weitere
+Initialisierungsfälle. Die Szenarien verwenden MACOS bzw. für `TD(2)` NUMPAD als
+festen Eingabelayer; dynamische Layerauflösung und Reportausgabe sind simuliert.
+Nach dem Leeren der Ereignispuffer dürfen keine Eingaben verloren, Layer aktiv
+oder Tap-Dance-Ausgaben gedrückt geblieben sein. Tests decken auch eine fremde
+User-Kennung, QMK-Neuinitialisierung, teilweise fehlgeschlagene Schreibvorgänge und
+den Erhalt von Quick Tap und Slots außerhalb 0–2 ab. Der Tap-Dance-Speichertyp wird
+direkt aus dem geprüften Herstellerheader bezogen. Die Tests verwenden weiterhin
+Vials Standard-Tap-Dance-Engine; Studio-spezifische Ereignistests wurden nicht kopiert.
+Die vollständige QMK-Verarbeitungskette ist damit nicht getestet.
+Die lokale Prüfung bezieht sich bisher auf den
 oben genannten Analysestand, nicht automatisch auf den aktuellen Branchkopf.
 Die Hosttests allein bestätigen keinen ARM-/UF2-Build. Der Nutzer hat inzwischen
 einen erfolgreichen Actions-Build gemeldet. Lauf-ID, gebaute Firmware-/Userspace-

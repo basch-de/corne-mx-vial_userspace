@@ -28,17 +28,28 @@ for name in ('VIAL_KEYBOARD_UID', 'VIAL_UNLOCK_COMBO_ROWS', 'VIAL_UNLOCK_COMBO_C
     personal = re.search(pattern, personal_config, re.M)
     assert stock and personal and re.sub(r'\s+', '', stock[1]) == re.sub(r'\s+', '', personal[1]), f'Manufacturer {name} changed'
 layout = json.loads((upstream / 'info.json').read_text())['layouts']['LAYOUT_split_3x6_3_ex2']['layout']
-assert len(layout) == 46
-assert [x['matrix'] for x in layout[40:]] == [[3,3],[3,4],[3,5],[7,5],[7,4],[7,3]]
+# Independent electrical order, including all mirrored right-hand positions.
+expected = ([[0,c] for c in range(7)] + [[4,c] for c in range(6,-1,-1)] +
+            [[1,c] for c in range(7)] + [[5,c] for c in range(6,-1,-1)] +
+            [[2,c] for c in range(6)] + [[6,c] for c in range(5,-1,-1)] +
+            [[3,c] for c in range(3,6)] + [[7,c] for c in range(5,2,-1)])
+assert [x['matrix'] for x in layout] == expected, '46-position physical/electrical layout changed'
+assert len(layout) == 46 and len(set(map(tuple, expected))) == 46
 original = json.loads((upstream / 'keymaps/vial/vial.json').read_text())
 custom = json.loads((local / 'basch_de/vial.json').read_text())
 assert custom == original
 settings = (firmware / 'quantum/qmk_settings.c').read_text()
+for name, source in (
+    ('via_init_kb', 'quantum/via.c'),
+    ('eeconfig_init_user', 'quantum/eeconfig.c'),
+    ('keyboard_post_init_user', 'quantum/keyboard.c'),
+):
+    assert re.search(r'__attribute__\(\(weak\)\)\s+void\s+' + name + r'\(', (firmware/source).read_text()), f'{name} is no longer a weak default'
 for declaration in (
     r'DECLARE_STATIC_SETTING\(\s*7\s*,\s*tapping_term\s*\)',
     r'DECLARE_STATIC_BITSETTING\(\s*22\s*,\s*tapping_v2\s*,\s*QS_tapping_permissive_hold_bit\s*\)',
     r'DECLARE_STATIC_BITSETTING\(\s*23\s*,\s*tapping_v2\s*,\s*QS_tapping_hold_on_other_key_press_bit\s*\)',
     r'DECLARE_STATIC_BITSETTING\(\s*26\s*,\s*tapping_v2\s*,\s*QS_tapping_chordal_hold_bit\s*\)',
 ):
-    assert re.search(declaration, settings), 'Vial settings protocol used by behaviors.c changed'
-print('Target, GP21, 46 positions, 16-layer storage, Vial identity/geometry, and settings IDs verified.')
+    assert re.search(declaration, settings), 'Vial settings protocol used by defaults.c changed'
+print('Target, GP21, full 46-position matrix, 16-layer storage, Vial identity/geometry, initialization hooks, and settings IDs verified.')

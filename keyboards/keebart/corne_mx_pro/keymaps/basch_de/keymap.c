@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-// Maintain this keymap directly; Vial defaults and handedness live in behaviors.c.
+// Maintain this keymap directly; persistent defaults live in defaults.c.
 #include QMK_KEYBOARD_H
-#include "behaviors.h"
+#include "layers.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MACOS] = LAYOUT_split_3x6_3_ex2(
-        GRV_SYS,   KC_Q,          KC_W,          KC_E,          KC_R,          KC_T,     KC_NO,  KC_NO,  KC_Y,     KC_U,          KC_I,          KC_O,          KC_P,             KC_BSLS,
-        TD(0),     LCTL_T(KC_A),  LGUI_T(KC_S),  LALT_T(KC_D),  LSFT_T(KC_F),  KC_G,     KC_NO,  KC_NO,  KC_H,     RSFT_T(KC_J),  RALT_T(KC_K),  RGUI_T(KC_L),  RCTL_T(KC_SCLN),  QUOT_CSA,
-        EQ_SHORT,  KC_Z,          KC_X,          KC_C,          KC_V,          KC_B,                     KC_N,     KC_M,          KC_COMM,       KC_DOT,        KC_SLSH,          KC_MINS,
-                                                 ESC_NAV,       BSP_NUM,       TAB_WIN,                  ENT_PAD,  SPC_SYM,       TD(1)
+        LT(SYS, KC_GRV),    KC_Q,          KC_W,          KC_E,          KC_R,          KC_T,     KC_NO,  KC_NO,  KC_Y,                KC_U,          KC_I,          KC_O,          KC_P,             KC_BSLS,
+        TD(0),              LCTL_T(KC_A),  LGUI_T(KC_S),  LALT_T(KC_D),  LSFT_T(KC_F),  KC_G,     KC_NO,  KC_NO,  KC_H,                RSFT_T(KC_J),  RALT_T(KC_K),  RGUI_T(KC_L),  RCTL_T(KC_SCLN),  MT(MOD_LCTL | MOD_LSFT | MOD_LALT, KC_QUOT),
+        LT(SHORT, KC_EQL),  KC_Z,          KC_X,          KC_C,          KC_V,          KC_B,                     KC_N,                KC_M,          KC_COMM,       KC_DOT,        KC_SLSH,          KC_MINS,
+                                                            LT(NAV, KC_ESC),  LT(NUM, KC_BSPC),  LT(WIN, KC_TAB),  LT(NUMPAD, KC_ENT),  LT(SYM, KC_SPC),  TD(1)
     ),
     [NUM] = LAYOUT_split_3x6_3_ex2(
         KC_COMM,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_NO,  KC_NO,  KC_6,     KC_7,     KC_8,     KC_9,   KC_0,      KC_BSPC,
@@ -52,6 +52,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_RBT,  QK_BOOT,  EE_CLR,  KC_NO,  KC_NO,  KC_NO,                  RM_TOGG,  RM_NEXT,  KC_NO,    EE_CLR,   QK_BOOT,  QK_RBT,
                                     KC_NO,  KC_NO,  KC_NO,                  KC_NO,    KC_NO,    KC_NO
     ),
+};
+
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
+    {'L','L','L','L','L','L','L'},
+    {'L','L','L','L','L','L','L'},
+    {'L','L','L','L','L','L','L'},
+    {'*','*','*','*','*','*','*'},
+    {'R','R','R','R','R','R','R'},
+    {'R','R','R','R','R','R','R'},
+    {'R','R','R','R','R','R','R'},
+    {'*','*','*','*','*','*','*'},
 };
 
 // Preserve all four manufacturer encoder assignments on every dynamic layer.

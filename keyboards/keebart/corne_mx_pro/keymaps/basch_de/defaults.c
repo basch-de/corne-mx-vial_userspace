@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include QMK_KEYBOARD_H
-#include "behaviors.h"
+#include "layers.h"
 
 #include "qmk_settings.h"
 #include "via.h"
@@ -48,14 +48,3 @@ void keyboard_post_init_user(void) {
         vial_settings_invalid = false;
     }
 }
-
-const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
-    {'L','L','L','L','L','L','L'},
-    {'L','L','L','L','L','L','L'},
-    {'L','L','L','L','L','L','L'},
-    {'*','*','*','*','*','*','*'},
-    {'R','R','R','R','R','R','R'},
-    {'R','R','R','R','R','R','R'},
-    {'R','R','R','R','R','R','R'},
-    {'*','*','*','*','*','*','*'},
-};

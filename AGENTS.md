@@ -80,12 +80,15 @@ Eigene Keymap-Dateien liegen unter `keyboards/keebart/corne_mx_pro/keymaps/basch
 
 | Datei | Aufgabe |
 |---|---|
-| `keymap.c` | Direkt gepflegte Layer- und Encoderbelegung |
-| `behaviors.h` | Layernamen und Aliase für normale MT/LT-Codes |
-| `behaviors.c` | Erstinitialisierung und Chordal-Hold-Handzuordnung |
+| `keymap.c` | Direkt gepflegte Layer- und Encoderbelegung sowie Chordal-Hold-Handzuordnung |
+| `layers.h` | Gemeinsame Layernamen |
+| `defaults.c` | Erstinitialisierung der Vial-Settings und Tap Dances |
 | `config.h` | Anfänglicher Tapping Term und Hersteller-Vial-Identität |
 | `rules.mk` | Standardfeatures und zusätzliche Quelldatei |
 | `vial.json` | Unveränderte Herstellergeometrie |
+
+Dateiaufteilung wie im Studio-Projekt beibehalten. Normale QMK-Tastencodes direkt
+in `keymap.c` schreiben; keine eigenen MT-/LT-Kurzformen im Layerheader pflegen.
 
 Keine lokale Kopie der Hersteller-Keymap pflegen. Der Herstellerjob baut `vial`
 direkt aus dem für den Lauf aufgelösten Firmwarecheckout. Er verwendet `stock-userspace/`
@@ -95,7 +98,8 @@ Der persönliche Job verwendet `userspace/` mit der lokalen Keymap `basch_de`.
 Matrix-Jobs (`manufacturer` und `personal`) mit `fail-fast: false` und je einem
 `qmk mass-compile -j "$(nproc)"`-Aufruf. Persönliche Quellen- und Hosttests laufen
 nur im persönlichen Job. Die Quellenprüfung protokolliert den Hersteller-Commit
-und prüft Hardware- und Vial-Geometrie, 16 Layer, UID, Unlock und die vier verwendeten
+und prüft die vollständige 46-Positionen-Matrix, Vial-Geometrie, 16 Layer, UID,
+Unlock, schwache Initialisierungshooks und die vier verwendeten
 Settings-Protokoll-IDs gegen den Firmwarecheckout. Änderungen können einen neuen
 Audit oder Anpassungen erfordern; Prüfungen nicht zur Fehlerumgehung entfernen.
 Eine fehlende erwartete UF2 muss den Job fehlschlagen lassen. Erfolgreiche Jobs
@@ -192,12 +196,20 @@ git diff --check
 ```
 
 `check_sources.py` prüft Kompatibilität statt einer festen Firmware-Commit-ID:
-Hardware- und Vial-Geometrie, Identität, Layerzahl und Settings-Protokoll-IDs.
+vollständige Matrixzuordnung, Vial-Geometrie, Identität, Layerzahl, schwache
+Initialisierungshooks und Settings-Protokoll-IDs.
 Die Host-Kompilierungsprüfung bezieht die originale `vial`-Keymap direkt aus dem
 Firmwarecheckout; nur die persönliche Keymap liegt lokal.
-Die Hosttests prüfen die tatsächlichen kompilierten Keymap-Daten und 32 Ereignis-
+Die Hosttests prüfen die tatsächlichen kompilierten Keymap-Daten und 35 Ereignis-
 szenarien mit unveränderten Keebart-Tap/Hold-, Tap-Dance- und Caps-Word-Funktionen.
-Hardware, USB, EEPROM und Reportgrenzen sind simuliert. Nach Belegungsänderungen
+Physische Eingaben beziehen ihre Codes aus den kompilierten Bindings des Szenario-
+Layers (MACOS oder NUMPAD für `TD(2)`). Gemeinsame Abschlussprüfungen kontrollieren
+Press/Release-Paare, Ereignisanzahl und freigegebene Layer/Tap-Dance-Ausgaben.
+Initialisierungsfälle prüfen auch fremde Kennungen, QMK-Neuinitialisierung und den
+Erhalt nicht vorbelegter Slots bzw. von Quick Tap. Den Vial-Tap-Dance-Speichertyp
+aus dem aktuellen Herstellerheader beziehen statt separat nachzubauen.
+Hardware, USB, EEPROM, Layerauflösung und Reportgrenzen sind simuliert; dies ist
+kein Test der vollständigen QMK-Verarbeitungskette. Nach Belegungsänderungen
 betroffene Matrixprüfungen anpassen; keine separate Belegungskopie pflegen.
 Auch neue unversionierte Dateien auf Whitespacefehler prüfen. Für reine
 Dokumentationsänderungen sind keine Firmwaretests erforderlich.
