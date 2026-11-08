@@ -70,7 +70,9 @@ Daumenausnahmen sind unsere Belegungsentscheidung, kein universeller Standard.
 External Userspace beibehalten. Keebarts untersuchter Branch unterstützt
 `QMK_USERSPACE` nativ; keine Keymapkopien in den Firmwarebaum und keine Core-
 oder Hardwarepatches nötig. Versionsabhängige APIs gegen den Buildstand prüfen.
-Keebart Studio und dessen Feature-Branch gehören zu einem späteren separaten Projekt.
+Keebart Studio und dessen Feature-Branch werden im separaten Projekt
+`../corne-mx-studio_userspace` gepflegt. Es dient hier als lesbare Buildreferenz;
+Änderungen daran sind ein eigener Auftrag.
 
 ## Dateien pflegen
 
@@ -203,9 +205,8 @@ Dokumentationsänderungen sind keine Firmwaretests erforderlich.
 Stand: Herstellerreferenz und Keymaps auf dem Host geprüft. Der Nutzer hat einen
 erfolgreichen Actions-Build gemeldet. Lauf-ID, gebaute Firmware-/Userspace-Revision
 und Artefaktinhalte wurden dazu nicht separat geprüft; den Erfolg nicht pauschal
-auf spätere Revisionen übertragen. Der frühere `ensurepip`-Fehler betraf die inzwischen
-entfernte venv-Erstellung. Der Workflow verwendet wie Keebarts CI direkt die
-vorinstallierte Umgebung des festgesetzten Containers. Hardware-/GUI-Tests und vier
+auf spätere Revisionen übertragen. Der Workflow verwendet direkt die vorinstallierte
+Umgebung des festgesetzten Containers. Hardware-/GUI-Tests und vier
 zusätzliche Tastenbelegungen bleiben offen. Kein Flash oder EEPROM-Reset ausgeführt.
 Der Firmware-Commit wird pro Lauf gemeinsam aufgelöst und protokolliert; der
 Buildcontainer bleibt festgesetzt. Branchupdates, Actions-Tags und zufällige
