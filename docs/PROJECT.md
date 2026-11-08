@@ -140,13 +140,14 @@ Firmwarecheckout und die lokale persönliche Keymap.
 echten Keebart-Tap/Hold-, Tap-Dance- und Caps-Word-Implementierungen; Hardware,
 USB und EEPROM sind simuliert. Die lokale Prüfung bezieht sich bisher auf den
 oben genannten Analysestand, nicht automatisch auf den aktuellen Branchkopf.
-Ein vollständiger ARM-/UF2-Build ist damit nicht
-bestätigt. Ein erfolgreicher Online-Build nach der Workflowkorrektur und
-Hardwaretests stehen aus.
+Die Hosttests allein bestätigen keinen ARM-/UF2-Build. Der Nutzer hat inzwischen
+einen erfolgreichen Actions-Build gemeldet. Lauf-ID, gebaute Firmware-/Userspace-
+Revision und Artefaktinhalte wurden dazu nicht separat geprüft. Hardware- und
+Vial-GUI-Tests stehen weiterhin aus.
 
 Vor dem Einsatz noch zu prüfen:
 
-1. Beide vollständigen UF2-Builds in Actions und ihre Build-Provenienz.
+1. Erfolgreichen Actions-Lauf, beide UF2-Artefakte und ihre Build-Provenienz zuordnen.
 2. Eigenständiger physischer Bootloaderzugang beider Hälften sowie USB links/rechts.
 3. Seitenerkennung, Schalter, RGB und gegebenenfalls Encoder; vier innere Tasten belegen.
 4. Alle Layer, HRM-Rollen/Akkorde, Quick Tap und die drei Tap Dances einschließlich

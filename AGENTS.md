@@ -200,12 +200,13 @@ betroffene Matrixprüfungen anpassen; keine separate Belegungskopie pflegen.
 Auch neue unversionierte Dateien auf Whitespacefehler prüfen. Für reine
 Dokumentationsänderungen sind keine Firmwaretests erforderlich.
 
-Stand: Herstellerreferenz und Keymaps auf dem Host geprüft, kein erfolgreicher
-ARM-/UF2-Build bestätigt. Der gemeldete Actions-Lauf scheiterte bei der zusätzlichen
-venv-Erstellung an fehlendem `ensurepip`. Der Workflow verwendet jetzt wie Keebarts
-CI direkt die vorinstallierte Umgebung des festgesetzten Containers. Keine eigene
-venv nötig; ein erfolgreicher neuer Lauf steht aus. Hardwaretests und vier
-zusätzliche Tastenbelegungen offen. Nichts geflasht oder auf der Tastatur gelöscht.
+Stand: Herstellerreferenz und Keymaps auf dem Host geprüft. Der Nutzer hat einen
+erfolgreichen Actions-Build gemeldet. Lauf-ID, gebaute Firmware-/Userspace-Revision
+und Artefaktinhalte wurden dazu nicht separat geprüft; den Erfolg nicht pauschal
+auf spätere Revisionen übertragen. Der frühere `ensurepip`-Fehler betraf die inzwischen
+entfernte venv-Erstellung. Der Workflow verwendet wie Keebarts CI direkt die
+vorinstallierte Umgebung des festgesetzten Containers. Hardware-/GUI-Tests und vier
+zusätzliche Tastenbelegungen bleiben offen. Kein Flash oder EEPROM-Reset ausgeführt.
 Der Firmware-Commit wird pro Lauf gemeinsam aufgelöst und protokolliert; der
 Buildcontainer bleibt festgesetzt. Branchupdates, Actions-Tags und zufällige
 Build-ID erlauben keine Zusage bitidentischer Builds. Der temporäre Analysecheckout

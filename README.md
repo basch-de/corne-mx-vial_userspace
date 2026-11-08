@@ -81,10 +81,11 @@ Herstelleränderungen können Anpassungen der persönlichen Firmware erfordern.
 Herstellerreferenz und Vial-Geometrie geprüft; beide Keymaps auf
 dem Host mit echten QMK-Keycodes und Herstellerlayout kompiliert. 32 Host-
 Ereignistests sowie Prüfungen der tatsächlichen Keymap-Matrix bestehen. Hardware,
-USB und persistenter Speicher werden dabei simuliert. Ein vollständiger
-RP2040-/UF2-Build und Hardwaretests stehen noch aus. Der gemeldete Actions-Lauf
-scheiterte beim Anlegen einer Python-venv wegen fehlendem `ensurepip`; dieser
-Vorbereitungsschritt wurde entfernt. Ein erfolgreicher neuer Lauf steht aus.
+USB und persistenter Speicher werden dabei simuliert. Der Nutzer hat einen
+erfolgreichen Actions-Build bestätigt; Lauf-ID, gebaute Revisionen und Artefaktinhalte
+wurden dazu nicht separat geprüft. Hardware- und Vial-GUI-Tests stehen noch aus.
+Die zusätzliche venv-Erstellung, die zuvor am fehlenden `ensurepip` scheiterte,
+wurde entfernt.
 Es wurde nichts geflasht und kein EEPROM-Reset auf der Tastatur ausgeführt.
 
 Technische Hinweise, Persistenz und offene Hardwaretests:
