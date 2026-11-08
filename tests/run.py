@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile real keymaps and test the actual pinned action_tapping.c on the host.
+"""Compile real keymaps and test the checked-out action_tapping.c on the host.
 
 Only hardware/report functions are mocked. This is not an RP2040 firmware build.
 Usage: python3 tests/run.py /path/to/keebart-firmware
@@ -42,8 +42,7 @@ with tempfile.TemporaryDirectory(prefix='corne-host-') as directory:
                '-DQMK_KEYBOARD_H="mock.h"',
                '-I'+str(tmp), '-I'+str(keymap), '-I'+str(firmware/'quantum'),
                '-I'+str(firmware/'quantum/keymap_extras'), '-I'+str(firmware/'quantum/sequencer')]
-    for name in ('basch_de','keebart_vial_stock'):
-        path = keymap.parent / name / 'keymap.c'
+    for path in (keymap / 'keymap.c', firmware / 'keyboards/keebart/corne_mx_pro/keymaps/vial/keymap.c'):
         subprocess.run(options + ['-fsyntax-only', str(path)], check=True)
     shutil.copy(root/'tests/qmk_settings.h', tmp/'qmk_settings.h')
     # Link the real Vial timing and QMK Settings hooks without symbol renaming.

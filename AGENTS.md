@@ -5,7 +5,7 @@ zwei RP2040, 46 physische Tasten, keine Displays**.
 
 - Buildziel: `keebart/corne_mx_pro/standard`
 - Eigene Keymap: `basch_de`
-- Unveränderte Herstellerreferenz: `keebart_vial_stock`
+- Unveränderte Herstellerreferenz: `vial`, direkt aus dem Firmwarecheckout
 - Kommunikation auf Deutsch; Code, Bezeichner und Quelltextkommentare auf Englisch.
 - Vor Änderungen tatsächlichen Dateistand und lokale Änderungen prüfen.
 
@@ -48,14 +48,19 @@ Herstellerdefinition bestätigt: `SPLIT_HAND_PIN GP21`, Split-TX GP12, USB-VBUS 
 Hardwaredefinitionen unverändert aus Keebarts Firmware beziehen.
 
 Die explizite `chordal_hold_layout` umfasst alle 46 Positionen; sechs Daumen sind
-mit `*` ausgenommen. Sie ist beabsichtigt: QMK erzeugt im festgesetzten Branch
+mit `*` ausgenommen. Sie ist beabsichtigt: QMK erzeugt im bisher geprüften Stand
 seine automatische Handtabelle nur aus dem ersten Herstellerlayout mit 36 Tasten.
 Daumenausnahmen sind unsere Belegungsentscheidung, kein universeller Standard.
 
 ## Quellen und Architektur
 
-- Firmware: <https://github.com/Keebart/vial-qmk-keebart>, Branch `vial`, im Workflow
-  festgesetzt auf `63e2d6248209f1926e60daa5b950c771cf09d837`.
+- Firmware: <https://github.com/Keebart/vial-qmk-keebart>, Branch `vial`.
+  Jeder neue Workflow-Lauf löst den aktuellen Branchstand einmal im Job
+  `firmware-revision` auf. Beide Buildvarianten verwenden danach dieselbe Commit-ID.
+  Keinen dauerhaften Firmware-Commit-Pin wieder einführen. Neue Hersteller-Commits
+  starten allein keinen Lauf; Trigger sind Push, Pull Request und manueller Start.
+  `63e2d6248209f1926e60daa5b950c771cf09d837` ist der bisher lokal geprüfte Stand,
+  kein aktiver Checkout-Pin und kein Nachweis für neuere Revisionen.
 - Historische Belegungsvorlage: <https://github.com/basch-de/zmk-config>, Commit
   `17dc18d4065161066a459656a87f36f11cd4ae88`, `config/corne_choc_pro.keymap`.
   Für normale QMK-Arbeit muss diese Quelle nicht erneut ausgewertet werden.
@@ -80,15 +85,29 @@ Eigene Keymap-Dateien liegen unter `keyboards/keebart/corne_mx_pro/keymaps/basch
 | `rules.mk` | Standardfeatures und zusätzliche Quelldatei |
 | `vial.json` | Unveränderte Herstellergeometrie |
 
-Herstellerreferenz unter `keymaps/keebart_vial_stock/` bytegleich halten.
-`qmk.json` enthält beide Buildziele. Der Workflow baut beide in einem gemeinsamen
-`qmk mass-compile`-Aufruf mit parallelen Jobs und getrennten UF2-Artefakten.
-Vorhandene UF2-Dateien auch bei einem Teilfehler hochladen; der Build bleibt dann
-fehlgeschlagen. Bei abgebrochenen Läufen keine UF2-Uploads starten.
-Buildvorlage ist Keebarts `.github/workflows/ci.yml` am festgesetzten Commit:
+Keine lokale Kopie der Hersteller-Keymap pflegen. Der Herstellerjob baut `vial`
+direkt aus dem für den Lauf aufgelösten Firmwarecheckout. Er verwendet `stock-userspace/`
+mit lediglich einer kopierten `qmk.json`, ohne lokale Keymap-Dateien.
+Der persönliche Job verwendet `userspace/` mit der lokalen Keymap `basch_de`.
+`qmk.json` enthält beide Buildziele. Der Workflow baut sie in zwei unabhängigen
+Matrix-Jobs (`manufacturer` und `personal`) mit `fail-fast: false` und je einem
+`qmk mass-compile -j "$(nproc)"`-Aufruf. Persönliche Quellen- und Hosttests laufen
+nur im persönlichen Job. Die Quellenprüfung protokolliert den Hersteller-Commit
+und prüft Hardware- und Vial-Geometrie, 16 Layer, UID, Unlock und die vier verwendeten
+Settings-Protokoll-IDs gegen den Firmwarecheckout. Änderungen können einen neuen
+Audit oder Anpassungen erfordern; Prüfungen nicht zur Fehlerumgehung entfernen.
+Eine fehlende erwartete UF2 muss den Job fehlschlagen lassen. Erfolgreiche Jobs
+laden ihre UF2 auch dann hoch, wenn der andere Job scheitert. Compilerlogs,
+Fehlerlogs, Revisionen und UF2-SHA256 je Variante als Build-Provenienz archivieren;
+Provenienz auch bei Fehlern hochladen. Keine UF2-Uploads nach einem fehlgeschlagenen
+oder abgebrochenen eigenen Build starten.
+Buildvorlage ist Keebarts `.github/workflows/ci.yml` am oben genannten Analysestand:
 Container, direkte Umgebung, Git-Safe-Directory und `qmk mass-compile` verwenden.
 Für External Userspace kommen zweiter Checkout, `QMK_USERSPACE`, CLI-Pfade,
 unsere Prüfungen und Artefakt-Uploads hinzu. Keine zusätzliche venv einführen.
+Der Buildcontainer bleibt per Digest fest; Actions bleiben auf `@v4`, Runner auf
+`ubuntu-latest`. Submodule rekursiv an den Commits der aufgelösten Firmware laden,
+nicht unabhängig auf die neuesten Submodule-Branches wechseln.
 `README.md` ist der Einstieg; [docs/PROJECT.md](docs/PROJECT.md) enthält technische
 Hinweise und offene Hardwaretests. Diese Dokumentation bei relevanten Änderungen aktualisieren.
 
@@ -106,7 +125,7 @@ Layer: `MACOS=0`, `NUM=1`, `SYM=2`, `NAV=3`, `WIN=4`, `SHORT=5`, `NUMPAD=6`, `SY
 - US-HID-Codes und Modifier sind maßgeblich. Aus `basch_de` kein deutsches QWERTZ ableiten.
 - 16 dynamische Layer sind Herstellerstandard; acht davon vorbelegt. Keine Reduzierung auf acht.
 - Encoder-Map und Keymap müssen gleich viele vorbelegte Layer besitzen.
-- Beide `vial.json` entsprechen der Herstellerdefinition ohne Custom Keycodes.
+- Die persönliche `vial.json` entspricht der Herstellerdefinition ohne Custom Keycodes.
 
 Vial-Settings: `QMK_SETTINGS = yes`, Tapping Term 250 ms, Permissive Hold und
 Chordal Hold an, Hold On Other Key Press aus. Quick Tap startet nach Vials
@@ -170,7 +189,10 @@ python3 tests/run.py /path/to/vial-qmk-keebart
 git diff --check
 ```
 
-`check_sources.py` prüft festgesetzten Herstellerstand, Referenzdateien und Geometrie.
+`check_sources.py` prüft Kompatibilität statt einer festen Firmware-Commit-ID:
+Hardware- und Vial-Geometrie, Identität, Layerzahl und Settings-Protokoll-IDs.
+Die Host-Kompilierungsprüfung bezieht die originale `vial`-Keymap direkt aus dem
+Firmwarecheckout; nur die persönliche Keymap liegt lokal.
 Die Hosttests prüfen die tatsächlichen kompilierten Keymap-Daten und 32 Ereignis-
 szenarien mit unveränderten Keebart-Tap/Hold-, Tap-Dance- und Caps-Word-Funktionen.
 Hardware, USB, EEPROM und Reportgrenzen sind simuliert. Nach Belegungsänderungen
@@ -184,8 +206,10 @@ venv-Erstellung an fehlendem `ensurepip`. Der Workflow verwendet jetzt wie Keeba
 CI direkt die vorinstallierte Umgebung des festgesetzten Containers. Keine eigene
 venv nötig; ein erfolgreicher neuer Lauf steht aus. Hardwaretests und vier
 zusätzliche Tastenbelegungen offen. Nichts geflasht oder auf der Tastatur gelöscht.
-Firmware-Commit und Buildcontainer sind festgesetzt; Actions-Tags und zufällige
-Build-ID erlauben keine Zusage bitidentischer Builds.
+Der Firmware-Commit wird pro Lauf gemeinsam aufgelöst und protokolliert; der
+Buildcontainer bleibt festgesetzt. Branchupdates, Actions-Tags und zufällige
+Build-ID erlauben keine Zusage bitidentischer Builds. Der temporäre Analysecheckout
+unter `/private/tmp/corne-keebart-vial` folgt dem Branch nicht automatisch.
 
 Erfolgreichen Hosttest nicht als erfolgreichen Firmwarebuild melden. Build- und
 Hardwareergebnisse nur für den konkret geprüften Stand berichten und dokumentieren.

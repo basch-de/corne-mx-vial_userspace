@@ -7,7 +7,9 @@ Tasten und zwei RP2040-Controllern, ohne Displays**. Buildziel:
 `keebart/corne_mx_pro/standard`.
 
 Hardwaredefinitionen stammen unverändert aus
-[Keebarts Vial-Branch](https://github.com/Keebart/vial-qmk-keebart/tree/63e2d6248209f1926e60daa5b950c771cf09d837).
+[Keebarts Vial-Branch](https://github.com/Keebart/vial-qmk-keebart/tree/vial).
+Die folgenden Quellenbefunde wurden am Commit
+`63e2d6248209f1926e60daa5b950c771cf09d837` geprüft; neuere Stände brauchen eigene Prüfungen.
 Bestätigt sind Seitenerkennung GP21, Split-TX GP12 und USB-VBUS GP13.
 Das Layout `LAYOUT_split_3x6_3_ex2` enthält 14 + 14 + 12 + 6 Positionen.
 Die rechten Matrixspalten sind gespiegelt; die Daumen liegen links auf `[3,3..5]`
@@ -94,25 +96,51 @@ adressiert nicht automatisch den rechten Controller. Es gibt keine eigene Split-
 ## Build und Hardwaretests
 
 Der Workflow baut die unveränderte Herstellerreferenz und die persönliche Keymap
-in einem gemeinsamen Aufruf und veröffentlicht getrennte Artefakte. Vorlage ist
-[Keebarts CI am festgesetzten Commit](https://github.com/Keebart/vial-qmk-keebart/blob/63e2d6248209f1926e60daa5b950c771cf09d837/.github/workflows/ci.yml):
+in zwei unabhängigen Matrix-Jobs und veröffentlicht getrennte Artefakte.
+Der vorgeschaltete Job `firmware-revision` löst den aktuellen Branch `vial` einmal
+auf. Beide Varianten checken anschließend genau diesen Commit aus; es gibt keinen
+dauerhaften Firmware-Commit-Pin. Neue Hersteller-Commits werden erst beim nächsten
+Push, Pull Request oder manuellen Start übernommen und lösen allein keinen Lauf aus.
+Vorlage ist
+[Keebarts CI am historischen Analysestand](https://github.com/Keebart/vial-qmk-keebart/blob/63e2d6248209f1926e60daa5b950c771cf09d837/.github/workflows/ci.yml):
 gleicher Container, direkte vorinstallierte Umgebung, Git-Safe-Directory und
-`qmk mass-compile -j "$(nproc)"`. Statt aller Herstellerboards werden nur unsere
-beiden Targets mit einem gemeinsamen Budget paralleler Jobs gebaut. Erfolgreich
-erzeugte UF2-Dateien werden auch bei einem Teilfehler hochgeladen; der Lauf bleibt
-dann fehlgeschlagen. Bei Abbruch entfallen die UF2-Uploads. Fehlerlogs erscheinen
-bei Fehlschlag im Joblog.
+`qmk mass-compile -j "$(nproc)"`. Jeder Job baut nur sein ausgewähltes Target mit
+eigenem Runner. `fail-fast: false` verhindert den Abbruch der anderen Variante bei
+einem Fehler. Der Job `manufacturer` verwendet `stock-userspace/` mit lediglich
+einer kopierten `qmk.json` und baut die originale Keymap `vial` direkt aus dem
+Firmwarecheckout. Der Job `personal` verwendet `userspace/` mit der lokalen Keymap
+`basch_de`. Eine lokale Herstellerkopie und deren Bytevergleich entfallen.
+Persönliche Quellenprüfung und Hosttests laufen ausschließlich im Job `personal`.
+Eine fehlende erwartete UF2 lässt den Job ausdrücklich fehlschlagen. Nur nach
+erfolgreichem eigenem Build wird die UF2 hochgeladen, auch wenn der andere Job
+scheitert; der gesamte Lauf bleibt dann fehlgeschlagen.
 Zusätzlich braucht External Userspace zwei Checkouts, die CLI-Konfiguration von
 `user.qmk_home`/`user.overlay_dir` und `QMK_USERSPACE`; Prüfungen und Artefakt-
 Uploads bleiben projektspezifisch. Die zusätzliche
 venv-Erstellung wurde nach dem gemeldeten `ensurepip`-Fehler entfernt.
-Firmware-Commit und Container sind festgesetzt; Actions-Tags und zufällige Build-ID
-verhindern eine Zusage bitidentischer Builds. Die Artefakte enthalten Build-Provenienz.
+Der Container bleibt per Digest festgesetzt. Submodule werden rekursiv an den
+Commits des aufgelösten Firmwarestands geladen. Actions bleiben auf `@v4`, Runner
+auf `ubuntu-latest`. Branchupdates, Actions-Tags und zufällige Build-ID verhindern
+eine Zusage bitidentischer Builds. Die separaten Artefakte
+`build-provenance-manufacturer` und `build-provenance-personal` enthalten Revisionen,
+Werkzeugversionen, Compilerlogs und nach erfolgreichem Build UF2-SHA256. Bei Fehlern
+werden zusätzlich `.build/failed.log.*` ins Joblog ausgegeben und archiviert.
+Die Provenienz-Uploads laufen auch bei Fehlern.
+Die UF2-Artefaktnamen bleiben unverändert; die Herstellerdatei trägt jetzt den
+originalen Keymapnamen mit Endung `_vial.uf2`.
 
-`check_sources.py` prüft Herstellerstand, Referenzdateien und Geometrie.
+`check_sources.py` protokolliert den Hersteller-Commit und prüft Kompatibilität:
+Hardware- und persönliche Vial-Geometrie, 16 Layer, UID, physisches Unlock und
+die Settings-Protokoll-IDs 7/22/23/26. Eine neue Commit-ID allein führt nicht zum
+Abbruch; geänderte Schnittstellen oder Herstellerdefinitionen können Anpassungen
+oder einen erneuten Audit erfordern.
+Die Host-Kompilierungsprüfung nutzt die originale `vial`-Keymap aus dem
+Firmwarecheckout und die lokale persönliche Keymap.
 `tests/run.py` prüft die kompilierten Keymap-Daten und 32 Ereignisszenarien mit
 echten Keebart-Tap/Hold-, Tap-Dance- und Caps-Word-Implementierungen; Hardware,
-USB und EEPROM sind simuliert. Ein vollständiger ARM-/UF2-Build ist damit nicht
+USB und EEPROM sind simuliert. Die lokale Prüfung bezieht sich bisher auf den
+oben genannten Analysestand, nicht automatisch auf den aktuellen Branchkopf.
+Ein vollständiger ARM-/UF2-Build ist damit nicht
 bestätigt. Ein erfolgreicher Online-Build nach der Workflowkorrektur und
 Hardwaretests stehen aus.
 

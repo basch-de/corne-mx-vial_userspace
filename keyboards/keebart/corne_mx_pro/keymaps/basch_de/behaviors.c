@@ -35,7 +35,7 @@ void keyboard_post_init_user(void) {
     const uint16_t term = TAPPING_TERM;
     const uint8_t enabled = 1;
     const uint8_t disabled = 0;
-    // IDs from the pinned branch's qmk_settings.c protocol table.
+    // Protocol IDs checked against qmk_settings.c by scripts/check_sources.py.
     if (qmk_settings_set(7, &term, sizeof(term)) == 0 &&
         qmk_settings_set(22, &enabled, sizeof(enabled)) == 0 &&
         qmk_settings_set(23, &disabled, sizeof(disabled)) == 0 &&
